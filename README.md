@@ -37,9 +37,9 @@ I will be using Trello(INSERT INLINE REFERENCE HERE) to track it.
 
 ### Screenshots of progress
 
-<img src="26mar22.png" alt="26mar22_update1" title="">
+<img src="26mar22_1.png" alt="26mar22_update1 (Beginning)" title="">
 
-<img src="26mar22.png" alt="26mar22_update2" title="">
+<img src="28mar22_1.png" alt="28mar22_update1" title="">
 
 <img src="28mar22.png" alt="28mar22_update1" title="">
 
@@ -64,6 +64,7 @@ I will be using Trello(INSERT INLINE REFERENCE HERE) to track it.
    - (INCOMEPLETE)
    - (INCOMEPLETE)
    - (INCOMEPLETE)
+   - RSPEC
 3. Bundler
 
 ### System/Hardware requirements
