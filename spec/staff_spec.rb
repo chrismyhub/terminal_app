@@ -27,3 +27,12 @@ describe Staff do
     expect(staff.password).to eq 'abc123'
   end
 end
+
+
+describe "get_name" do
+    let(:name) { "James" }
+
+    it "should be 'James" do
+      expect(name).to eq 'James'
+    end
+  end

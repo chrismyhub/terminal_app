@@ -8,4 +8,10 @@ class Staff
     @password = password
   end
 
+
+  def get_name(name = gets.chomp)
+    puts "Please enter your name:"
+    name.capitalize
+  end 
+
 end
