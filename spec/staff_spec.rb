@@ -1,7 +1,7 @@
 require './staff'
 
 describe Staff do
-  subject(:staff) {Staff.new('Peterpan1', 'Peter Pan', 'TEAM_MEMBER_MAX_LEAVE_ALLOCATED', 'abc123')}
+  let(:staff) {Staff.new('Peterpan1', 'Peter Pan', 'TEAM_MEMBER_MAX_LEAVE_ALLOCATED', 'abc123')}
   
   it 'can be instantiated' do
     expect(staff).not_to be_nil
