@@ -1,7 +1,11 @@
 class Staff
-  attr_reader :staffid
+  attr_reader :id, :name, :role, :password
 
-  def initialize(staffid, name, role, password)
-    @staffid = staffid
+  def initialize(id, name, role, password)
+    @id = id
+    @name = name
+    @role = role
+    @password = password
   end
+
 end
