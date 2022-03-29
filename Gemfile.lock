@@ -3,6 +3,8 @@ GEM
   specs:
     rainbow (3.1.1)
     table_print (1.5.7)
+    terminal-basic-menu (1.1.0)
+      rainbow (~> 3.0, >= 3.0.0)
 
 PLATFORMS
   arm64-darwin-20
@@ -10,6 +12,7 @@ PLATFORMS
 DEPENDENCIES
   rainbow (~> 3.1)
   table_print (~> 1.5)
+  terminal-basic-menu (~> 1.1)
 
 BUNDLED WITH
    2.3.9
