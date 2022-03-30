@@ -14,6 +14,7 @@ describe Leave do
   end
   it 'return role' do
     expect(leave.role).not_to be_nil
+  end
 
 
 end
