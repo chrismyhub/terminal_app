@@ -1,5 +1,10 @@
 require_relative 'staff.rb'
+require_relative 'user_input.rb'
+require_relative 'menu.rb'
 
+class Main
 
-enter_new_staff = Staff.create_new
-Staff.add_to_staff_csv(enter_new_staff)
+    # MENU PAGE (LOGIN/CREATE/DELETE PROFILE)
+Menu.options
+
+end
