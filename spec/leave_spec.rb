@@ -17,6 +17,10 @@ describe Leave do
     expect(leave.role).to eq 'TEAM_MEMBER_MAX_LEAVE_ALLOCATED'
     expect("LEAVE_ALLOCATED").to include("VE_ALL")
   end
+  it 'return remaining leave' do
+    expect(leave.leave_taken).to eq 2
+
+  end
 
 
 end
