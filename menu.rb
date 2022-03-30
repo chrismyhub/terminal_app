@@ -30,8 +30,8 @@ class Menu
   def self.make_selection(menu_selection)
     case menu_selection
     when "1"
-      Validation.login
-      Leave.run
+      staffid = Validation.login
+      Leave.run(staffid)
     when "2"
       create_new_profile
     when "3"

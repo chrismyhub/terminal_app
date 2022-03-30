@@ -5,16 +5,14 @@ require 'json'
 class Leave
   attr_reader :staffid, :leave_days_by_role, :leave_taken, :leave_remaining
 
+  include Constants
+
   def initialize(staffid, leave_days_by_role, leave_taken, leave_remaining)
     @staffid = staffid
     @leave_days_by_role = leave_days_by_role
     @leave_taken = leave_taken
     @leave_remaining = leave_remaining
   end
-
-  data = JSON.load_file('dates.json')
-  data_staff = CSV.read('staff.csv')
-
 
   def self.menu
     system "clear"
@@ -32,19 +30,46 @@ class Leave
     puts "Q. Exit \n "
   end
 
-  def max_allocated_days(staffid)
-    if (data_staff.find { |values| values.include?(staffid)}[2]) == "MANAGER_MAX_LEAVE_ALLOCATED"
-      leave_days_by_leave_days_by_role = Constants.MANAGER_MAX_LEAVE_ALLOCATED
+  def self.max_allocated_days(staffid)
+    data = JSON.load_file('dates.json')
+    data_staff = CSV.read('staff.csv')
+
+    if (data_staff.find { |values| values.include?(staffid)}[2]) == 'MANAGER_MAX_LEAVE_ALLOCATED'
+      leave_days_by_role = MANAGER_MAX_LEAVE_ALLOCATED
     else 
-      leave_days_by_leave_days_by_role = Constants.TEAM_MEMBER_MAX_LEAVE_ALLOCATED
+      leave_days_by_role = TEAM_MEMBER_MAX_LEAVE_ALLOCATED
     end
+    leave_days_by_role
   end
 
-  def create_new
+  def self.create_new(staffid)
+    data = JSON.load_file('dates.json')
+    data_staff = CSV.read('staff.csv')
+
+    system "clear"
+    puts "Please enter leave date required:\n(in the format DDMMMYY)"
+    leave_date = UserInput.entry.upcase
+
+    if data[0][leave_date].any? { |s| s.include?(staffid) }
+      puts "You have already booked this date, please try another date."
+    elsif (data[0][leave_date].length >= 2)  
+      puts "Unable to book, maximum capacity reached."
+    else
+      data[0][leave_date] << staffid
+      File.write('dates.json', JSON.pretty_generate(data))
+        puts "Your leave request for #{leave_date}, is confirmed!"
+    
+      dates_taken =  data[0].select { |date, names| names.include? (staffid) }.keys
+      number_of_dates_taken = dates_taken.length
+      leave_days_by_role = max_allocated_days(staffid)
+      remaining_leave = leave_days_by_role - number_of_dates_taken
+       puts "Your remaining leave credits: #{remaining_leave} days"
+    end
 
   end
 
-  def self.run
+  def self.run(staffid)
     menu
+    create_new(staffid)
   end
 end

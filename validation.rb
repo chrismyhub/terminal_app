@@ -21,5 +21,6 @@ class Validation
       feedback = is_invalid_staff ? "Incorrect login details, please try again." : "Successful login!"
       puts feedback
     end
+    staffid
   end
 end
