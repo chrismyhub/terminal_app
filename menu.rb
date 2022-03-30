@@ -29,7 +29,7 @@ class Menu
     puts '1. Login'
     puts '2. Create new profile'
     puts '3. Update Existing profile/password'
-    puts '4. Delete Existing profile'
+    puts "4. Delete Existing profile \n "
     puts 'H. Help menu'
     puts "Q. Exit \n "
   end
@@ -47,6 +47,7 @@ class Menu
     case menu_selection
     when "1"
       Validation.login
+      Leave.run
     when "2"
       create_new_profile
     when "3"
