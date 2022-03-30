@@ -7,6 +7,9 @@ describe Leave do
     expect(leave).not_to be_nil
     expect(leave).to be_instance_of Leave
   end
+  it 'return staffid' do
+    expect(leave.staffid).to eq 'Peterpan1'
+  end
 
 
 end
