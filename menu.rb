@@ -19,28 +19,40 @@ class Menu
     puts "Q. Exit \n "
   end
 
-  def self.options
+  def self.create_new_profile
+    enter_new_staff = Staff.create_new
+    Staff.add_to_staff_csv(enter_new_staff)
+  end
+
+  def self.invalid_response(menu_selection)
+    menu_selection != '1' && menu_selection != '2' && menu_selection != '3' && menu_selection !='4' && menu_selection != 'H' && menu_selection != 'Q'
+  end
+
+  def self.make_selection(menu_selection)
+    case menu_selection
+    when "1"
+      login
+    when "2"
+      create_new_profile
+    when "3"
+      # PULL FROM STAFF CLASS"
+    when "4"
+      # PULL FROM STAFF CLASS"
+    when "H"
+      # PULL FROM HELP METHOD/CLASS"
+    when "Q"
+      exit
+    else 
+      puts "You have entered an invalid choice"
+    end
+  end
+
+  def self.run
     menu_selection = ' '
-    while menu_selection != '1' && menu_selection != '2' && menu_selection != '3' && menu_selection !='4' && menu_selection != 'H' && menu_selection != 'Q'
+    while invalid_response(menu_selection)
       menu_greeting
       menu_selection = UserInput.entry.upcase
-      case menu_selection
-      when "1"
-        login
-      when "2"
-        enter_new_staff = Staff.create_new
-        Staff.add_to_staff_csv(enter_new_staff)
-      when "3"
-        p "# PULL FROM STAFF CLASS"
-      when "4"
-        p "# PULL FROM STAFF CLASS"
-      when "H"
-        p "# PULL FROM HELP METHOD/CLASS"
-      when "Q"
-        exit
-      else 
-        puts "You have entered an invalid choice"
-      end
+      make_selection(menu_selection)
     end
   end
 

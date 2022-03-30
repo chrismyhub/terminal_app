@@ -4,7 +4,6 @@ require_relative 'menu.rb'
 
 class Main
 
-    # MENU PAGE (LOGIN/CREATE/DELETE PROFILE)
-Menu.options
+Menu.run
 
 end
