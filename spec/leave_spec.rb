@@ -10,7 +10,10 @@ describe Leave do
   it 'return staffid' do
     expect(leave.staffid).to eq 'Peterpan1'
     expect(leave.staffid).not_to be_nil
+    expect('Peterpan1').to end_with("1")
   end
+  it 'return role' do
+    expect(leave.role).not_to be_nil
 
 
 end
