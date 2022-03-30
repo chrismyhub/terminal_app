@@ -1,2 +1,3 @@
 class Leave
+
 end

@@ -8,7 +8,7 @@ class Menu
     puts "You have logged out of Team Leave App!"
   end
 
-  def self.menu_greeting
+  def self.main_greeting
     puts " \nWelcome to the Team Leave App! \n "
     puts "Please enter a number or 'H' or 'Q' to select from the following:"
     puts '1. Login'
