@@ -23,6 +23,7 @@ describe Leave do
   end
   it 'return remaining leave' do
     expect(leave.leave_remaining).to eq 18
+    expect(leave.leave_taken).to be < 30
   end
 
 end
