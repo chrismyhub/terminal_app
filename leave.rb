@@ -1,5 +1,5 @@
 class Leave
-  attr_reader :staffid, :role, :leave_taken
+  attr_reader :staffid, :role, :leave_taken, :leave_remaining
 
   def initialize(staffid, role, leave_taken, leave_remaining)
     @staffid = staffid
