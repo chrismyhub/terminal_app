@@ -19,6 +19,8 @@ describe Leave do
   end
   it 'return remaining leave' do
     expect(leave.leave_taken).to eq 2
+    expect(leave.leave_taken).to be > 0
+
 
   end
 
