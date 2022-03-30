@@ -1,8 +1,5 @@
-Bobchong1,Bob chong,MANAGER,abc123
-Forestgump1,Forest gump,MANAGER,123bdn
-Boohoo1,Boo hoo,MANAGER,
-Fredj1,Fred j,MANAGER,123bca
-Jamesbond1,James bond,MANAGER,cbv123
-Chrisc1,Chris c,MANAGER,123bvn
-Heryhe1,Hery he,TEAM_MEMBER,tth2343
-Testprint1,Test print,MANAGER,123bvn
+Adam1,Adam,MANAGER_MAX_LEAVE_ALLOCATED,abc123
+Mary1,Mary,TEAM_MEMBER_MAX_LEAVE_ALLOCATED,abc123
+Jane1,Jane,TEAM_MEMBER_MAX_LEAVE_ALLOCATED,abc123
+Glen1,Glen,TEAM_MEMBER_MAX_LEAVE_ALLOCATED,abc123
+Peter1,Peter,TEAM_MEMBER_MAX_LEAVE_ALLOCATED,abc123

@@ -1,14 +1,20 @@
 require_relative 'constants.rb'
+require 'csv'
+require 'json'
 
 class Leave
-  attr_reader :staffid, :role, :leave_taken, :leave_remaining
+  attr_reader :staffid, :leave_days_by_role, :leave_taken, :leave_remaining
 
-  def initialize(staffid, role, leave_taken, leave_remaining)
+  def initialize(staffid, leave_days_by_role, leave_taken, leave_remaining)
     @staffid = staffid
-    @role = role
+    @leave_days_by_role = leave_days_by_role
     @leave_taken = leave_taken
     @leave_remaining = leave_remaining
   end
+
+  data = JSON.load_file('dates.json')
+  data_staff = CSV.read('staff.csv')
+
 
   def self.menu
     system "clear"
@@ -26,10 +32,19 @@ class Leave
     puts "Q. Exit \n "
   end
 
+  def max_allocated_days(staffid)
+    if (data_staff.find { |values| values.include?(staffid)}[2]) == "MANAGER_MAX_LEAVE_ALLOCATED"
+      leave_days_by_leave_days_by_role = Constants.MANAGER_MAX_LEAVE_ALLOCATED
+    else 
+      leave_days_by_leave_days_by_role = Constants.TEAM_MEMBER_MAX_LEAVE_ALLOCATED
+    end
+  end
+
+  def create_new
+
+  end
+
   def self.run
     menu
   end
-
-
-
 end
