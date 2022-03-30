@@ -5,12 +5,12 @@
 
 Github link:
 
-(INCOMPLETE)
+https://github.com/chrismyhub/terminal_app
 
 ---
 
 ## Code Style Guide
-This Terminal Application will be adhering to Rubocop guidelines (INSERT INLINE REFERENCE HERE).
+This Terminal Application will be adhering to Rubocop guidelines (The Ruby Style Guide, 2022).
   
 
 ---
@@ -33,7 +33,7 @@ This Terminal Application will have the following features:
 ## Implementation Plan	
 This is my implementation plan...(INCOMPLETE)
 
-I will be using Trello(INSERT INLINE REFERENCE HERE) to track it.
+I will be using Trello (Trello, 2022) to track it.
 
 ### Screenshots of progress
 
@@ -41,11 +41,11 @@ I will be using Trello(INSERT INLINE REFERENCE HERE) to track it.
 
 <img src="28mar22_1.png" alt="28mar22_update1" title="">
 
-<img src="28mar22.png" alt="28mar22_update1" title="">
+<img src="29mar22_1.png" alt="29mar22_update1" title="">
 
-<img src="29mar22.png" alt="29mar22_update1" title="">
+<img src="29mar22_2.png" alt="29mar22_update2" title="">
 
-<img src="30mar22.png" alt="30mar22_update1" title="">
+<img src="30mar22_1.png" alt="30mar22_update1" title="">
 
 
 ---
@@ -60,10 +60,10 @@ I will be using Trello(INSERT INLINE REFERENCE HERE) to track it.
 ### Application dependancies
 1. Ruby
 2. Ruby Gems:
-   - (INCOMEPLETE)
-   - (INCOMEPLETE)
-   - (INCOMEPLETE)
-   - (INCOMEPLETE)
+   - rainbow
+   - table_print
+   - terminal-basic-menu
+   - tty-box
    - RSPEC
 3. Bundler
 
@@ -84,13 +84,13 @@ I will be using Trello(INSERT INLINE REFERENCE HERE) to track it.
  ## <u>REFERENCED SOURCES</u>
 <br>
 <font size="1">
-1.  Brown, N., 2022. Massive QR breach exposes 500,000 people. [online] news.com.au. Available at: < https://www.news.com.au/technology/online/security/massive-qr-breach-from-nsw-government-exposes-500000-addresses/news-story/0df6ca6f36ce760d352030197ab53eaa > [Accessed 18 February 2022].
+1.  Rubystyle.guide. 2022. The Ruby Style Guide. [online] Available at: < https://rubystyle.guide/ > [Accessed 30 March 2022].
 <br>
 <br>
-2.  Druce, A., 2022. Bunnings shoppers hit by cyber attack. [online] news. Available at: < https://www.news.com.au/technology/online/hacking/bunnings-drive-and-collect-customers-exposed-by-flexbooker-cyber-attack/news-story/e8945e567148ff9a6b1f784aafc957a6 > [Accessed 18 February 2022].
+2.  Trello.com. 2022. Trello. [online] Available at: < https://trello.com/ > [Accessed 30 March 2022].
 <br>
 <br>
-3.  Information Technology Professionals Association. 2022. Code of Ethics, Australia. [online] Available at: < https://www.itpa.org.au/code-of-ethics/ > [Accessed 18 February 2022].
+1.  
 <br>
 <br>
 
