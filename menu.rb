@@ -1,7 +1,22 @@
+require_relative 'validation.rb'
+
 class Menu
 
   def self.login
-    puts "Please enter Staff ID and Password:"
+    is_invalid_staff = true
+
+    while is_invalid_staff
+      puts "Please enter your Staff ID:"
+      staffid = UserInput.entry
+      puts "Please enter your Password:"
+      password = UserInput.entry
+      is_invalid_staff = !(Validation.is_valid_staff(staffid, password))
+        if is_invalid_staff == true 
+          puts "Incorrect login details, please try again."
+        else
+          puts "Successful login!"
+        end
+    end
   end
 
   def self.exit
