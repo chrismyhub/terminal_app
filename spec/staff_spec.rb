@@ -28,11 +28,3 @@ describe Staff do
   end
 end
 
-
-describe "get_name" do
-    let(:name) { "James" }
-
-    it "should be 'James" do
-      expect(name).to eq 'James'
-    end
-  end
