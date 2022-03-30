@@ -9,6 +9,7 @@ describe Leave do
   end
   it 'return staffid' do
     expect(leave.staffid).to eq 'Peterpan1'
+    expect(leave.staffid).not_to be_nil
   end
 
 
