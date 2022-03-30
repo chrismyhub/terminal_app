@@ -1,3 +1,5 @@
+require_relative 'constants.rb'
+
 class Leave
   attr_reader :staffid, :role, :leave_taken, :leave_remaining
 
@@ -9,6 +11,7 @@ class Leave
   end
 
   def self.menu
+    system "clear"
     puts " \n STAFF LEAVE MENU \n "
     # puts " \nWelcome STAFF NAME, you have taken #{leave_taken}"
     # puts "your current leave credits are #{leave_remaining}"
