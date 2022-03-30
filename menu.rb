@@ -2,22 +2,22 @@ require_relative 'validation.rb'
 
 class Menu
 
-  def self.login
-    is_invalid_staff = true
+  # def self.login
+  #   is_invalid_staff = true
 
-    while is_invalid_staff
-      puts "Please enter your Staff ID:"
-      staffid = UserInput.entry
-      puts "Please enter your Password:"
-      password = UserInput.entry
-      is_invalid_staff = !(Validation.is_valid_staff(staffid, password))
-        if is_invalid_staff == true 
-          puts "Incorrect login details, please try again."
-        else
-          puts "Successful login!"
-        end
-    end
-  end
+  #   while is_invalid_staff
+  #     puts "Please enter your Staff ID:"
+  #     staffid = UserInput.entry
+  #     puts "Please enter your Password:"
+  #     password = UserInput.entry
+  #     is_invalid_staff = !(Validation.is_valid_staff(staffid, password))
+  #       if is_invalid_staff == true 
+  #         puts "Incorrect login details, please try again."
+  #       else
+  #         puts "Successful login!"
+  #       end
+  #   end
+  # end
 
   def self.exit
     puts "You have logged out of Team Leave App!"
@@ -46,7 +46,7 @@ class Menu
   def self.make_selection(menu_selection)
     case menu_selection
     when "1"
-      login
+      Validation.login
     when "2"
       create_new_profile
     when "3"
