@@ -47,13 +47,4 @@ class Menu
     end
   end
 
-  def self.run
-    menu_selection = ' '
-    while invalid_response(menu_selection)
-      menu_greeting
-      menu_selection = UserInput.entry.upcase
-      make_selection(menu_selection)
-    end
-  end
-
 end

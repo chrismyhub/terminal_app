@@ -4,6 +4,14 @@ require_relative 'menu.rb'
 
 class Main
 
-Menu.run
+  def self.run
+    menu_selection = ' '
+    while Menu.invalid_response(menu_selection)
+      Menu.menu_greeting
+      menu_selection = UserInput.entry.upcase
+      Menu.make_selection(menu_selection)
+    end
+  end
 
+Main.run
 end
