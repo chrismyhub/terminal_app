@@ -12,13 +12,13 @@ class Validation
     is_invalid_staff = true
     # CHECK FOR INVALID STAFF ID AND PASSWORD COMBO
     while is_invalid_staff
-      system "clear"
       puts "Please enter your Staff ID:"
       staffid = UserInput.entry
       puts "Please enter your Password:"
       password = UserInput.entry
       is_invalid_staff = !(is_valid_staff(staffid, password))
       feedback = is_invalid_staff ? "Incorrect login details, please try again." : "Successful login!"
+      system "clear"
       puts feedback
     end
     staffid

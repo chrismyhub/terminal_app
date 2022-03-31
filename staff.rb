@@ -14,7 +14,7 @@ class Staff
   # WRITE A METHOD FOR DELETE NAME
   def self.input_name
     puts 'Please enter your name:'
-    gets.chomp.capitalize
+    UserInput.entry.capitalize
   end
 
   # WRITE A METHOD FOR DELETE STAFF ID (WHEN I DELETE A STAFF OFF THE CSV FILE)
@@ -23,14 +23,27 @@ class Staff
   end
 
   def self.input_role
-    puts "Please enter your role: \n (Please enter either MANAGER or TEAM_MEMBER)"
-    gets.chomp.upcase
+    role_entered = ' '
+
+    while role_entered != 'M' && role_entered != 'T'
+       puts "Please enter your role: \n (Please enter either M (for MANAGER) or T (for TEAM MEMBER)"
+       role_entered = UserInput.entry.upcase
+         if role_entered == 'M'
+           max_leave_allocated = 'MANAGER_MAX_LEAVE_ALLOCATED'
+         elsif role_entered == 'T'
+          max_leave_allocated = 'TEAM_MEMBER_MAX_LEAVE_ALLOCATED'
+         else
+          system "clear"
+          puts "Invalid entry, please try again."
+         end
+    end
+    return max_leave_allocated
   end
 
   # CREATE METHOD FOR UPDATE PASSWORD (DELETING OF PASSWORD HANDLED BY DELETE STAFF)
   def self.input_password
     puts 'Please enter a password:'
-    gets.chomp
+    UserInput.entry
   end
 
   # CREATE NEW METHOD FOR UPDATE AND DELETE EXISTING STAFF DETAILS 

@@ -42,18 +42,85 @@ class Leave
     leave_days_by_role
   end
 
-  def self.create_new(staffid)
+#   def self.date_already_booked(staffid, leave_date)
+#     data = JSON.load_file('dates.json')
+#     data[0][leave_date].any? { |s| s.include?(staffid) }
+#   end
+
+#   def self.insufficient_staff_on_date(data, leave_date)
+#     (data[0][leave_date].length >= 2)
+#   end
+
+#   def self.create_new(staffid)
+#     data = JSON.load_file('dates.json')
+#     data_staff = CSV.read('staff.csv')
+#     leave_date = ' '
+
+#     while data[0][leave_date].any? { |s| s.include?(staffid) } || insufficient_staff_on_date(data, leave_date)
+#       system "clear"
+#       puts "Please enter leave date required:\n(in the format DDMMMYY)"
+#       leave_date = UserInput.entry.upcase
+
+#       if data[0][leave_date].any? { |s| s.include?(staffid) }
+#         puts 'You have already booked this date, please try another date.'
+#       elsif insufficient_staff_on_date(data, leave_date)
+#         puts 'Unable to book, maximum capacity reached.  Please try another date.'
+#       else
+#         data[0][leave_date] << staffid
+#         File.write('dates.json', JSON.pretty_generate(data))
+#           puts "Your leave request for #{leave_date}, is confirmed!"
+    
+#         dates_taken =  data[0].select { |date, names| names.include? (staffid) }.keys
+#         number_of_dates_taken = dates_taken.length
+#         leave_days_by_role = max_allocated_days(staffid)
+#         remaining_leave = leave_days_by_role - number_of_dates_taken
+#          puts "Your remaining leave credits: #{remaining_leave} days"
+#       end
+#     end
+#   end
+
+# def self.create_new(staffid)
+#     data = JSON.load_file('dates.json')
+#     data_staff = CSV.read('staff.csv')
+#     leave_date = ' '
+#     # IN DIFF PLACES CREATES NEW ISSUES
+#     system "clear"
+#     while leave_date = ' ' || data[0][leave_date].any? { |s| s.include?(staffid) } || (data[0][leave_date].length >= 2)
+#     puts "Please enter leave date required:\n(in the format DDMMMYY)"
+#     leave_date = UserInput.entry.upcase
+    
+#     if data[0][leave_date].any? { |s| s.include?(staffid) }
+#       puts 'You have already booked this date, please try another date.'
+#     elsif (data[0][leave_date].length >= 2)  
+#       puts 'Unable to book, maximum capacity reached.  Please try another date.'
+#     else
+#       data[0][leave_date] << staffid
+#       File.write('dates.json', JSON.pretty_generate(data))
+#         puts "Your leave request for #{leave_date}, is confirmed!"
+    
+#       dates_taken =  data[0].select { |date, names| names.include? (staffid) }.keys
+#       number_of_dates_taken = dates_taken.length
+#       leave_days_by_role = max_allocated_days(staffid)
+#       remaining_leave = leave_days_by_role - number_of_dates_taken
+#        puts "Your remaining leave credits: #{remaining_leave} days"
+#     end
+#     end
+#   end
+
+
+
+def self.create_new(staffid)
     data = JSON.load_file('dates.json')
     data_staff = CSV.read('staff.csv')
 
-    system "clear"
+    
     puts "Please enter leave date required:\n(in the format DDMMMYY)"
     leave_date = UserInput.entry.upcase
 
     if data[0][leave_date].any? { |s| s.include?(staffid) }
-      puts "You have already booked this date, please try another date."
+      puts 'You have already booked this date, please try another date.'
     elsif (data[0][leave_date].length >= 2)  
-      puts "Unable to book, maximum capacity reached."
+      puts 'Unable to book, maximum capacity reached.  Please try another date.'
     else
       data[0][leave_date] << staffid
       File.write('dates.json', JSON.pretty_generate(data))
@@ -67,9 +134,35 @@ class Leave
     end
 
   end
-
   def self.run(staffid)
     menu
     create_new(staffid)
   end
 end
+
+
+# def self.create_new(staffid)
+#     data = JSON.load_file('dates.json')
+#     data_staff = CSV.read('staff.csv')
+
+#     system "clear"
+#     puts "Please enter leave date required:\n(in the format DDMMMYY)"
+#     leave_date = UserInput.entry.upcase
+
+#     if data[0][leave_date].any? { |s| s.include?(staffid) }
+#       puts 'You have already booked this date, please try another date.'
+#     elsif (data[0][leave_date].length >= 2)  
+#       puts 'Unable to book, maximum capacity reached.  Please try another date.'
+#     else
+#       data[0][leave_date] << staffid
+#       File.write('dates.json', JSON.pretty_generate(data))
+#         puts "Your leave request for #{leave_date}, is confirmed!"
+    
+#       dates_taken =  data[0].select { |date, names| names.include? (staffid) }.keys
+#       number_of_dates_taken = dates_taken.length
+#       leave_days_by_role = max_allocated_days(staffid)
+#       remaining_leave = leave_days_by_role - number_of_dates_taken
+#        puts "Your remaining leave credits: #{remaining_leave} days"
+#     end
+
+#   end
