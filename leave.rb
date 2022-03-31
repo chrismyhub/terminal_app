@@ -50,9 +50,22 @@ class Leave
     (data[0][leave_date].length >= 2) 
   end
 
+  def self.updating_new_leave_to_dates_file(data, leave_date, staffid)
+    data[0][leave_date] << staffid
+    File.write('dates.json', JSON.pretty_generate(data))
+    puts "Your leave request for #{leave_date}, is confirmed!"
+  end
+
+  def self.displaying_remaining_leave_credits(data, staffid)
+    dates_taken =  data[0].select { |date, names| names.include? (staffid) }.keys
+    number_of_dates_taken = dates_taken.length
+    leave_days_by_role = max_allocated_days(staffid)
+    remaining_leave = leave_days_by_role - number_of_dates_taken
+    puts "Your remaining leave credits: #{remaining_leave} days"
+  end
+
   def self.create_new(staffid)
     data = JSON.load_file('dates.json')
-    data_staff = CSV.read('staff.csv')
     leave_date = ' '
 
     while leave_date = ' ' || is_date_already_booked(data, leave_date, staffid) || is_max_capacity_reached(data, leave_date)
@@ -60,19 +73,15 @@ class Leave
       leave_date = UserInput.entry.upcase
 
       if is_date_already_booked(data, leave_date, staffid)
+        system 'clear'
         puts " \nYou have already booked this date, please try another date.\n "
       elsif is_max_capacity_reached(data, leave_date)
+        system 'clear'
         puts " \nUnable to book, maximum capacity reached.  Please try another date.\n "
       else
-        data[0][leave_date] << staffid
-        File.write('dates.json', JSON.pretty_generate(data))
-        puts "Your leave request for #{leave_date}, is confirmed!"
-
-        dates_taken =  data[0].select { |date, names| names.include? (staffid) }.keys
-        number_of_dates_taken = dates_taken.length
-        leave_days_by_role = max_allocated_days(staffid)
-        remaining_leave = leave_days_by_role - number_of_dates_taken
-        puts "Your remaining leave credits: #{remaining_leave} days"
+        system 'clear'
+        updating_new_leave_to_dates_file(data, leave_date, staffid)
+        displaying_remaining_leave_credits(data, staffid)
         break
       end
     end
