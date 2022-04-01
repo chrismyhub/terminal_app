@@ -88,9 +88,50 @@ class Leave
 
   end
 
+  def self.invalid_leave_response(leave_menu_selection)
+    # leave_menu_selection == ' ' || leave_menu_selection != '1' && leave_menu_selection != '2' && leave_menu_selection != 'H' && leave_menu_selection != 'Q'
+    leave_menu_selection != '1' && leave_menu_selection != '2' && leave_menu_selection != 'H' && leave_menu_selection != 'Q'  
+  end
+
+  # def self.make_leave_selection(staffid, leave_menu_selection)
+  #   case leave_menu_selection
+  #   when "1"
+  #     create_new(staffid)
+  #   when "2"
+  #     puts "2"
+  #   when "H"
+  #     puts "H"
+  #   when "Q"
+  #     puts "Q"
+  #   else 
+  #     # puts "You have entered an invalid choice"
+  #     puts "carrot"
+  #   end
+  # end
+
   def self.run(staffid)
-    menu
-    create_new(staffid)
+   
+    leave_menu_selection = ' '
+    while invalid_leave_response(leave_menu_selection)
+      menu
+      leave_menu_selection = UserInput.entry.upcase
+        case leave_menu_selection
+        when "1"
+          create_new(staffid)
+        when "2"
+          puts "2"
+        when "H"
+          puts "H"
+        when "Q"
+          puts "Q"
+        else 
+          # puts "You have entered an invalid choice"
+          puts "carrot"
+        end
+      # make_leave_selection(leave_menu_selection)
+      
+      
+    end
   end
 end
 
