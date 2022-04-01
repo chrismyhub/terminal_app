@@ -88,6 +88,18 @@ class Leave
     end
   end
 
+  def self.delete_leave(data, data_staff, staffid)
+    staff_name = retreive_staff_name(data_staff, staffid)
+    puts "Hi #{staff_name}, please enter date to delete:\n(in the format DDMMMYY)"
+    date_to_delete = UserInput.entry.upcase
+    if data[0][date_to_delete].any? { |name| name.include?(staffid) }
+      data[0][date_to_delete].delete(staffid)
+      File.write('dates.json', JSON.pretty_generate(data))
+      system 'clear'
+      puts "You have successfully deleted leave for #{date_to_delete}!\n "
+    end
+  end
+
   def self.invalid_leave_response(leave_menu_selection)
     leave_menu_selection != '1' && 
       leave_menu_selection != '2' && 
@@ -101,7 +113,7 @@ class Leave
         when "1"
           create_new(data, data_staff, staffid)
         when "2"
-
+          delete_leave(data, data_staff, staffid)
         when "H"
 
         when "Q"
