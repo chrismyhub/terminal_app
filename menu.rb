@@ -25,15 +25,20 @@ class Menu
 
   def self.delete_profile
     staffid = Validation.login
-    puts " \nAre you sure you want to delete your profile? \n (Please enter Y (for Yes) or N (for No)"
-      if UserInput.entry.upcase == "Y"
-        Staff.delete_existing(staffid)
-      elsif UserInput.entry.upcase == "N"
-        puts "No deletion"
-      else
-        puts "Invalid entry, please try again."
-      end
-    
+    user_input = ' '
+    while user_input == ' ' || user_input != "Y" && user_input != "N"
+      puts " \nAre you sure you want to delete your profile? \n (Please enter Y (for Yes) or N (for No)"
+      user_input = UserInput.entry.upcase
+        if user_input == "Y"
+          Staff.delete_existing(staffid)
+        elsif user_input == "N"
+          # LINK BACK TO MAIN MENU
+          puts " \nNo deletion - BACK TO MAIN MENU\n "
+        else
+          system 'clear'
+          puts "Invalid entry, please try again."
+        end
+    end
   end
 
   def self.invalid_response(menu_selection)
