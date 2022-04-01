@@ -17,11 +17,11 @@ class Leave
   def self.menu(data, staffid)
     system "clear"
     puts " \n STAFF LEAVE MENU \n "
-    displaying_remaining_leave_credits(data, staffid)
     puts 'Your current requested dates are:'
-    # puts  ENTER METHOD FOR DISPLAYING CURRENT REQUESTED DATES
-    puts "Leave Options Menu \n "
-    puts "Please enter a number or 'H' or 'Q' to select from the following:"
+    puts retrieve_dates_taken(data, staffid)
+    puts " "
+    displaying_remaining_leave_credits(data, staffid)
+    puts " \nPlease enter a number or 'H' or 'Q' to select from the following:\n "
     puts '1. Request New Leave'
     puts "2. Delete Existing Untaken Leave \n "
     puts 'H. Help Menu'
@@ -55,12 +55,12 @@ class Leave
     puts "Your leave request for #{leave_date}, is confirmed!"
   end
 
-  def self.retrieved_dates_taken(data, staffid)
+  def self.retrieve_dates_taken(data, staffid)
     data[0].select { |date, names| names.include? (staffid) }.keys
   end
 
   def self.displaying_remaining_leave_credits(data, staffid)
-    dates_taken = retrieved_dates_taken(data, staffid)
+    dates_taken = retrieve_dates_taken(data, staffid)
     number_of_dates_taken = dates_taken.length
     leave_days_by_role = max_allocated_days(staffid)
     remaining_leave = leave_days_by_role - number_of_dates_taken
