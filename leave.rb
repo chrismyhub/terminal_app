@@ -14,11 +14,11 @@ class Leave
     @leave_remaining = leave_remaining
   end
 
-  def self.menu
+  def self.menu(data, staffid)
     system "clear"
     puts " \n STAFF LEAVE MENU \n "
-    # puts " \nWelcome STAFF NAME, you have taken #{leave_taken}"
-    # puts "your current leave credits are #{leave_remaining}"
+    # puts " \nWelcome #{staffid}, you have taken #{leave_taken}"
+    displaying_remaining_leave_credits(data, staffid)
     puts 'Your current requested dates are:'
     # puts  ENTER METHOD FOR DISPLAYING CURRENT REQUESTED DATES
     puts "Leave Options Menu \n "
@@ -57,107 +57,64 @@ class Leave
   end
 
   def self.displaying_remaining_leave_credits(data, staffid)
-    dates_taken =  data[0].select { |date, names| names.include? (staffid) }.keys
+    dates_taken = data[0].select { |date, names| names.include? (staffid) }.keys
     number_of_dates_taken = dates_taken.length
     leave_days_by_role = max_allocated_days(staffid)
     remaining_leave = leave_days_by_role - number_of_dates_taken
-    puts "Your remaining leave credits: #{remaining_leave} days"
+    puts "Your remaining leave credits: #{remaining_leave} days\n "
   end
 
-  def self.create_new(staffid)
-    data = JSON.load_file('dates.json')
+  def self.create_new(data, staffid)
     leave_date = ' '
 
     while leave_date = ' ' || is_date_already_booked(data, leave_date, staffid) || is_max_capacity_reached(data, leave_date)
       puts "Please enter leave date required:\n(in the format DDMMMYY)"
       leave_date = UserInput.entry.upcase
-
+      system 'clear'
       if is_date_already_booked(data, leave_date, staffid)
-        system 'clear'
         puts " \nYou have already booked this date, please try another date.\n "
       elsif is_max_capacity_reached(data, leave_date)
-        system 'clear'
         puts " \nUnable to book, maximum capacity reached.  Please try another date.\n "
       else
-        system 'clear'
         updating_new_leave_to_dates_file(data, leave_date, staffid)
         displaying_remaining_leave_credits(data, staffid)
         break
       end
     end
-
   end
 
   def self.invalid_leave_response(leave_menu_selection)
-    # leave_menu_selection == ' ' || leave_menu_selection != '1' && leave_menu_selection != '2' && leave_menu_selection != 'H' && leave_menu_selection != 'Q'
-    leave_menu_selection != '1' && leave_menu_selection != '2' && leave_menu_selection != 'H' && leave_menu_selection != 'Q'  
+    leave_menu_selection != '1' && 
+      leave_menu_selection != '2' && 
+      leave_menu_selection != 'H' && 
+      leave_menu_selection != 'Q'
   end
 
-  # def self.make_leave_selection(staffid, leave_menu_selection)
-  #   case leave_menu_selection
-  #   when "1"
-  #     create_new(staffid)
-  #   when "2"
-  #     puts "2"
-  #   when "H"
-  #     puts "H"
-  #   when "Q"
-  #     puts "Q"
-  #   else 
-  #     # puts "You have entered an invalid choice"
-  #     puts "carrot"
-  #   end
-  # end
-
-  def self.run(staffid)
-   
-    leave_menu_selection = ' '
-    while invalid_leave_response(leave_menu_selection)
-      menu
-      leave_menu_selection = UserInput.entry.upcase
+  def self.leave_make_selection(data, staffid)
+    leave_menu_selection = UserInput.entry.upcase
         case leave_menu_selection
         when "1"
-          create_new(staffid)
+          create_new(data, staffid)
         when "2"
-          puts "2"
+
         when "H"
-          puts "H"
+
         when "Q"
-          puts "Q"
+
         else 
-          # puts "You have entered an invalid choice"
-          puts "carrot"
+          puts "You have entered an invalid choice"
         end
-      # make_leave_selection(leave_menu_selection)
-      
-      
+  end
+
+ 
+
+  def self.run(staffid)
+    data = JSON.load_file('dates.json')
+    leave_menu_selection = ' '
+    while invalid_leave_response(leave_menu_selection)
+      menu(data, staffid)
+      leave_make_selection(data, staffid)
+      break
     end
   end
 end
-
-
-# def self.create_new(staffid)
-#     data = JSON.load_file('dates.json')
-#     data_staff = CSV.read('staff.csv')
-
-#     system "clear"
-#     puts "Please enter leave date required:\n(in the format DDMMMYY)"
-#     leave_date = UserInput.entry.upcase
-
-#     if data[0][leave_date].any? { |s| s.include?(staffid) }
-#       puts 'You have already booked this date, please try another date.'
-#     elsif (data[0][leave_date].length >= 2)  
-#       puts 'Unable to book, maximum capacity reached.  Please try another date.'
-#     else
-#       data[0][leave_date] << staffid
-#       File.write('dates.json', JSON.pretty_generate(data))
-#         puts "Your leave request for #{leave_date}, is confirmed!"
-    
-#       dates_taken =  data[0].select { |date, names| names.include? (staffid) }.keys
-#       number_of_dates_taken = dates_taken.length
-#       leave_days_by_role = max_allocated_days(staffid)
-#       remaining_leave = leave_days_by_role - number_of_dates_taken
-#        puts "Your remaining leave credits: #{remaining_leave} days"
-#     end
-
-#   end
