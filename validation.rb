@@ -1,5 +1,5 @@
 require_relative 'user_input'
-require_relative 'constants.rb'
+require_relative 'constants'
 
 class Validation
 

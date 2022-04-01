@@ -1,4 +1,4 @@
-require_relative 'validation.rb'
+require_relative 'validation'
 
 class Menu
 

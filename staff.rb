@@ -1,5 +1,5 @@
 require 'csv'
-require_relative 'constants.rb'
+require_relative 'constants'
 
 class Staff
   attr_reader :id, :name, :role, :password
@@ -11,6 +11,10 @@ class Staff
     @name = name
     @role = role
     @password = password
+  end
+
+  def self.find_staff_in_csv(staffid, column_index)
+    READ_STAFF_FILE.find { |values| values.include?(staffid)}[column_index]
   end
 
   # WRITE METHOD FOR UPDATE NAME
