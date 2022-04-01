@@ -23,8 +23,17 @@ class Menu
     Staff.add_to_staff_csv(enter_new_staff)
   end
 
-  def self.delete_profile(staffid)
-    Staff.delete_existing(staffid)
+  def self.delete_profile
+    staffid = Validation.login
+    puts " \nAre you sure you want to delete your profile? \n (Please enter Y (for Yes) or N (for No)"
+      if UserInput.entry.upcase == "Y"
+        Staff.delete_existing(staffid)
+      elsif UserInput.entry.upcase == "N"
+        puts "No deletion"
+      else
+        puts "Invalid entry, please try again."
+      end
+    
   end
 
   def self.invalid_response(menu_selection)
@@ -41,8 +50,7 @@ class Menu
     when "3"
       # PULL FROM STAFF CLASS"
     when "4"
-      staffid = Validation.login
-      delete_profile(staffid)
+      delete_profile
     when "H"
       # PULL FROM HELP METHOD/CLASS"
     when "Q"
