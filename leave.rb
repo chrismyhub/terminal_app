@@ -32,8 +32,13 @@ class Leave
     puts "Q. Exit \n "
   end
 
+  def self.find_staff_in_csv(staffid, column_index)
+    READ_STAFF_FILE.find { |values| values.include?(staffid)}[column_index]
+  end
+
   def self.max_allocated_days(staffid)
-    if (READ_STAFF_FILE.find { |values| values.include?(staffid)}[2]) == 'MANAGER_MAX_LEAVE_ALLOCATED'
+    # if (READ_STAFF_FILE.find { |values| values.include?(staffid)}[2]) == 'MANAGER_MAX_LEAVE_ALLOCATED'
+    if find_staff_in_csv(staffid, 2) == 'MANAGER_MAX_LEAVE_ALLOCATED'
       leave_days_by_role = MANAGER_MAX_LEAVE_ALLOCATED
     else 
       leave_days_by_role = TEAM_MEMBER_MAX_LEAVE_ALLOCATED

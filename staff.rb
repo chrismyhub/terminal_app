@@ -73,7 +73,7 @@ class Staff
   end
 
   def self.update_existing
-    input_name(" new ")
+    new_name = input_name(" new ")
 
     # FIND EXISTING ROLE
     staff_role = READ_STAFF_FILE.find { |role| role.include?(staff_id)}[2]
