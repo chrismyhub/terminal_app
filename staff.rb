@@ -77,7 +77,7 @@ class Staff
     puts 'Successfully deleted your account!'
   end
 
-  def self.update_existing(staffid)
+  def self.update_name(staffid)
     new_name = input_name(" new ")
 
     # FIND EXISTING ROLE
@@ -144,6 +144,25 @@ class Staff
     puts "You have successfully changed your Name!"
 
   end
+
+  
+
+  def self.update_existing(staffid)
+    name_or_password = ' '
+
+    while name_or_password == ' ' || name_or_password != 'N' && name_or_password != 'P'
+      puts "What would you like to update?\n(Please type either N(for Name) or P(for Password)" 
+      name_or_password = UserInput.entry.upcase
+      if name_or_password == 'N'
+        update_name(staffid)
+      elsif name_or_password == 'P'
+        puts "will update password"
+      else
+        puts "Invalid entry, please try again."
+      end
+    end
+  end
+    
 
   # CREATE METHOD FOR UPDATING AND DELETING EXISTING STAFF DEATILS FROM CSV
   def self.add_to_staff_csv(file, staff)
