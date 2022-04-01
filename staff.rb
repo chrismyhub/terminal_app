@@ -1,5 +1,6 @@
 require 'csv'
 require_relative 'constants'
+require_relative 'validation'
 
 class Staff
   attr_reader :id, :name, :role, :password
@@ -76,17 +77,19 @@ class Staff
     puts 'Successfully deleted your account!'
   end
 
-  def self.update_existing
+  def self.update_existing(staffid)
     new_name = input_name(" new ")
 
     # FIND EXISTING ROLE
     staff_role = find_staff_in_csv(staffid, 2)
+    staff_password = Validation.find_password_from_csv(staffid)
   
     # OPEN STAFF CSV File
     CSV.open('staff_output.csv', 'a') do |csv|
     # INSERT NEW NAME AND ADD NEW STAFF DETAILS TO STAFF OUTPUT CSV
-    csv << [staff_id, new_name, staff_role, staff_password]
+    csv << [staffid, new_name, staff_role, staff_password]
     end
+    # add_to_staff_csv('staff_output.csv', staff_role)
 
     # DELETE OLD STAFF DETAILS
 
@@ -95,7 +98,7 @@ class Staff
 
     # DELETE ROW IF STAFF NAME STAFF ID
     data_staff.delete_if do |row|
-    row[:staffid] == staff_id
+    row[:staffid] == staffid
     end
 
     # WRITE UPDATED STAFF CSV FILE
@@ -108,13 +111,13 @@ class Staff
     # OPEN STAFF OUTPUT CSV File
     data_staff_new = CSV.read('staff_output.csv')
     # LOOK FOR EXISTING STAFF ID FROM OUTPUT CSV
-    staff_id_new = data_staff_new.find { |id| id.include?(staff_id)}[0]
+    staff_id_new = data_staff_new.find { |id| id.include?(staffid)}[0]
     # LOOK FOR UPDATED NAME FROM OUTPUT CSV
-    staff_name_new = data_staff_new.find { |name| name.include?(staff_id)}[1]
+    staff_name_new = data_staff_new.find { |name| name.include?(staffid)}[1]
     # LOOK FOR EXISTING ROLE FROM OUTPUT CSV
-    staff_role_new = data_staff_new.find { |role| role.include?(staff_id)}[2]
+    staff_role_new = data_staff_new.find { |role| role.include?(staffid)}[2]
     # LOOK FOR EXISTING PASSWORD FROM OUTPUT CSV
-    staff_password_new = data_staff_new.find { |password| password.include?(staff_id)}[3]
+    staff_password_new = data_staff_new.find { |password| password.include?(staffid)}[3]
     
     #OPEN EXISTING STAFF CSV
     CSV.open('staff.csv', 'a') do |csv|
@@ -130,7 +133,7 @@ class Staff
 
     # DELETE ROW IF STAFF NAME STAFF ID IN STAFF OUTPUT CSV
     data_staff.delete_if do |row|
-    row[:staffid] == staff_id
+    row[:staffid] == staffid
     end
 
     # WRITE UPDATED STAFF OUTPUT CSV FILE
@@ -143,9 +146,9 @@ class Staff
   end
 
   # CREATE METHOD FOR UPDATING AND DELETING EXISTING STAFF DEATILS FROM CSV
-  def self.add_to_staff_csv(file, newbie)
+  def self.add_to_staff_csv(file, staff)
     CSV.open(file, 'a') do |csv|
-      csv << [newbie.id, newbie.name, newbie.role, newbie.password]
+      csv << [staff.id, staff.name, staff.role, staff.password]
     end
   end
 end

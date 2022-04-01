@@ -4,9 +4,12 @@ require_relative 'constants'
 class Validation
 
   include Constants
+  def self.find_password_from_csv(staffid)
+    READ_STAFF_FILE.find { |staff| staff.include?(staffid)}[3]
+  end
 
   def self.is_valid_staff(staffid, password)
-    (READ_STAFF_FILE.find { |staff| staff.include?(staffid)}[3]) == password
+    find_password_from_csv(staffid) == password
   end
 
   def self.login

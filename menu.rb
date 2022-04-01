@@ -54,7 +54,8 @@ class Menu
     when "2"
       create_new_profile
     when "3"
-      # PULL FROM STAFF CLASS"
+      staffid = Validation.login
+      Staff.update_existing(staffid)
     when "4"
       delete_profile
     when "H"
