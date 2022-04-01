@@ -1,11 +1,10 @@
-require_relative 'staff.rb'
-require_relative 'user_input.rb'
-require_relative 'menu.rb'
-require_relative 'leave.rb'
-require_relative 'validation.rb'
+require_relative 'staff'
+require_relative 'user_input'
+require_relative 'menu'
+require_relative 'leave'
+require_relative 'validation'
 
 class Main
-
   def self.run
     menu_selection = ' '
     while Menu.invalid_response(menu_selection)
@@ -15,5 +14,5 @@ class Main
     end
   end
 
-Main.run
+  Main.run
 end

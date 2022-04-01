@@ -1,4 +1,5 @@
 require_relative 'validation'
+require_relative 'leave'
 
 class Menu
 
@@ -43,7 +44,7 @@ class Menu
   end
 
   def self.invalid_response(menu_selection)
-    menu_selection != '1' && menu_selection != '2' && menu_selection != '3' && menu_selection !='4' && menu_selection != 'H' && menu_selection != 'Q'
+    menu_selection == ' ' || menu_selection != '1' && menu_selection != '2' && menu_selection != '3' && menu_selection !='4' && menu_selection != 'H' && menu_selection != 'Q'
   end
 
   def self.make_selection(menu_selection)
@@ -59,9 +60,9 @@ class Menu
     when "4"
       delete_profile
     when "H"
-      # PULL FROM HELP METHOD/CLASS"
+      puts "Go to Help Menu"
     when "Q"
-      exit
+      puts "You have exited!"
     else 
       puts "You have entered an invalid choice"
     end

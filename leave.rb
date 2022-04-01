@@ -92,8 +92,7 @@ class Leave
   end
 
   def self.delete_leave(staffid)
-    staff_name = retreive_staff_name(staffid)
-    puts "Hi #{staff_name}, please enter date to delete:\n(in the format DDMMMYY)"
+    puts "Please enter date to delete:\n(in the format DDMMMYY)"
     date_to_delete = UserInput.entry.upcase
     if READ_DATES_FILE[0][date_to_delete].any? { |name| name.include?(staffid) }
       READ_DATES_FILE[0][date_to_delete].delete(staffid)
@@ -106,24 +105,33 @@ class Leave
   def self.invalid_leave_response(leave_menu_selection)
     leave_menu_selection != '1' && 
       leave_menu_selection != '2' && 
-      leave_menu_selection != 'H' && 
+      leave_menu_selection != 'H' &&
+      leave_menu_selection != 'M' && 
       leave_menu_selection != 'Q'
   end
 
   def self.leave_make_selection(staffid)
     leave_menu_selection = UserInput.entry.upcase
-        case leave_menu_selection
-        when "1"
-          create_new(staffid)
-        when "2"
-          delete_leave(staffid)
-        when "H"
-
-        when "Q"
-
-        else 
-          puts "You have entered an invalid choice"
-        end
+    case leave_menu_selection
+    when "1"
+      create_new(staffid)
+      puts "Press any key to return to Leave Menu..."
+      UserInput.entry
+      run(staffid)
+    when "2"
+      delete_leave(staffid)
+      puts "Press any key to return to Leave Menu..."
+      UserInput.entry
+      run(staffid)
+    when "H"
+      puts "Help Menu"
+    when "M"
+      Main.run
+    when "Q"
+      puts "You have quit"
+    else 
+      puts "You have entered an invalid choice"
+    end
   end
 
  
