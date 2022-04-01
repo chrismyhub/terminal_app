@@ -4,11 +4,11 @@ require_relative 'leave'
 class Menu
 
   def self.exit
-    puts "You have logged out of Team Leave App!"
+    puts " \nYou have logged out of Team Leave App, Goodbye!\n "
   end
 
   def self.main_greeting
-    system "clear"
+    system 'clear'
     puts " \nWelcome to the Team Leave App! \n "
     puts "Please enter a number or 'H' or 'Q' to select from the following:"
     puts '1. Login'
@@ -23,12 +23,14 @@ class Menu
     enter_new_staff = Staff.create_new
     Staff.add_to_staff_csv('staff.csv', enter_new_staff)
     puts "\n Your profile is now setup!\n "
+    Validation.return_to_menu("Main")
+    Main.run
   end
 
   def self.delete_profile
     staffid = Validation.login
     user_input = ' '
-    while user_input == ' ' || user_input != "Y" && user_input != "N"
+    while user_input == ' ' || user_input != 'Y' && user_input != 'N'
       puts " \nAre you sure you want to delete your profile? \n (Please enter Y (for Yes) or N (for No)"
       user_input = UserInput.entry.upcase
         if user_input == "Y"
@@ -38,7 +40,7 @@ class Menu
           puts " \nNo deletion - BACK TO MAIN MENU\n "
         else
           system 'clear'
-          puts "Invalid entry, please try again."
+          puts 'Invalid entry, please try again.'
         end
     end
   end
@@ -49,22 +51,22 @@ class Menu
 
   def self.make_selection(menu_selection)
     case menu_selection
-    when "1"
+    when '1'
       staffid = Validation.login
       Leave.run(staffid)
-    when "2"
+    when '2'
       create_new_profile
-    when "3"
+    when '3'
       staffid = Validation.login
       Staff.update_existing(staffid)
-    when "4"
+    when '4'
       delete_profile
-    when "H"
-      puts "Go to Help Menu"
-    when "Q"
-      puts "You have exited!"
+    when 'H'
+      puts 'Go to Help Menu'
+    when 'Q'
+      exit
     else 
-      puts "You have entered an invalid choice"
+      puts 'You have entered an invalid choice'
     end
   end
 

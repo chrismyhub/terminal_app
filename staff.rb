@@ -75,6 +75,8 @@ class Staff
 
     write_to_csv
     puts 'Successfully deleted your account!'
+    Validation.return_to_menu("Main")
+    Main.run
   end
 
   def self.update_name(staffid)
@@ -142,6 +144,8 @@ class Staff
     end
 
     puts "You have successfully changed your Name!"
+    Validation.return_to_menu("Main")
+    Main.run
 
   end
 

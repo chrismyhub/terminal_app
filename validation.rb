@@ -4,6 +4,12 @@ require_relative 'constants'
 class Validation
 
   include Constants
+
+  def self.return_to_menu(which_menu)
+    puts "Press any key to return to #{which_menu} Menu..."
+    UserInput.entry
+  end
+
   def self.find_password_from_csv(staffid)
     READ_STAFF_FILE.find { |staff| staff.include?(staffid)}[3]
   end

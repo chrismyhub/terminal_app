@@ -1,5 +1,6 @@
 require_relative 'constants'
 require_relative 'staff'
+require_relative 'validation'
 
 class Leave
   attr_reader :staffid, :leave_days_by_role, :leave_taken, :leave_remaining
@@ -75,8 +76,8 @@ class Leave
   def self.create_new(staffid)
     leave_date = ' '
 
-    while leave_date = ' ' || is_date_already_booked(leave_date, staffid) || is_max_capacity_reached(leave_date)
-      puts "Please enter leave date required:\n(in the format DDMMMYY)"
+    while leave_date == ' ' || is_date_already_booked(leave_date, staffid) || is_max_capacity_reached(leave_date)
+      puts "\n Please enter leave date required:\n(in the format DDMMMYY)"
       leave_date = UserInput.entry.upcase
       system 'clear'
       if is_date_already_booked(leave_date, staffid)
@@ -113,24 +114,22 @@ class Leave
   def self.leave_make_selection(staffid)
     leave_menu_selection = UserInput.entry.upcase
     case leave_menu_selection
-    when "1"
+    when '1'
       create_new(staffid)
-      puts "Press any key to return to Leave Menu..."
-      UserInput.entry
+      Validation.return_to_menu("Leave")
       run(staffid)
-    when "2"
+    when '2'
       delete_leave(staffid)
-      puts "Press any key to return to Leave Menu..."
-      UserInput.entry
+      Validation.return_to_menu("Leave")
       run(staffid)
-    when "H"
-      puts "Help Menu"
-    when "M"
+    when 'H'
+      puts 'Help Menu'
+    when 'M'
       Main.run
-    when "Q"
-      puts "You have quit"
+    when 'Q'
+      Menu.exit
     else 
-      puts "You have entered an invalid choice"
+      puts 'You have entered an invalid choice'
     end
   end
 
