@@ -20,7 +20,8 @@ class Menu
 
   def self.create_new_profile
     enter_new_staff = Staff.create_new
-    Staff.add_to_staff_csv(enter_new_staff)
+    Staff.add_to_staff_csv('staff.csv', enter_new_staff)
+    puts "\n Your profile is now setup!\n "
   end
 
   def self.delete_profile

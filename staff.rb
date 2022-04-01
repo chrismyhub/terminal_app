@@ -80,9 +80,8 @@ class Staff
     new_name = input_name(" new ")
 
     # FIND EXISTING ROLE
-    staff_role = READ_STAFF_FILE.find { |role| role.include?(staff_id)}[2]
-
-
+    staff_role = find_staff_in_csv(staffid, 2)
+  
     # OPEN STAFF CSV File
     CSV.open('staff_output.csv', 'a') do |csv|
     # INSERT NEW NAME AND ADD NEW STAFF DETAILS TO STAFF OUTPUT CSV
@@ -144,10 +143,9 @@ class Staff
   end
 
   # CREATE METHOD FOR UPDATING AND DELETING EXISTING STAFF DEATILS FROM CSV
-  def self.add_to_staff_csv(newbie)
-    CSV.open('staff.csv', 'a') do |csv|
+  def self.add_to_staff_csv(file, newbie)
+    CSV.open(file, 'a') do |csv|
       csv << [newbie.id, newbie.name, newbie.role, newbie.password]
-      puts "\n Your profile is now setup!\n "
     end
   end
 end
