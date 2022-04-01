@@ -17,7 +17,6 @@ class Leave
   def self.menu(data, staffid)
     system "clear"
     puts " \n STAFF LEAVE MENU \n "
-    # puts " \nWelcome #{staffid}, you have taken #{leave_taken}"
     displaying_remaining_leave_credits(data, staffid)
     puts 'Your current requested dates are:'
     # puts  ENTER METHOD FOR DISPLAYING CURRENT REQUESTED DATES
@@ -56,8 +55,12 @@ class Leave
     puts "Your leave request for #{leave_date}, is confirmed!"
   end
 
+  def self.retrieved_dates_taken(data, staffid)
+    data[0].select { |date, names| names.include? (staffid) }.keys
+  end
+
   def self.displaying_remaining_leave_credits(data, staffid)
-    dates_taken = data[0].select { |date, names| names.include? (staffid) }.keys
+    dates_taken = retrieved_dates_taken(data, staffid)
     number_of_dates_taken = dates_taken.length
     leave_days_by_role = max_allocated_days(staffid)
     remaining_leave = leave_days_by_role - number_of_dates_taken
