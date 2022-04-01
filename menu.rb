@@ -23,6 +23,10 @@ class Menu
     Staff.add_to_staff_csv(enter_new_staff)
   end
 
+  def self.delete_profile(staffid)
+    Staff.delete_existing(staffid)
+  end
+
   def self.invalid_response(menu_selection)
     menu_selection != '1' && menu_selection != '2' && menu_selection != '3' && menu_selection !='4' && menu_selection != 'H' && menu_selection != 'Q'
   end
@@ -37,7 +41,8 @@ class Menu
     when "3"
       # PULL FROM STAFF CLASS"
     when "4"
-      # PULL FROM STAFF CLASS"
+      staffid = Validation.login
+      delete_profile(staffid)
     when "H"
       # PULL FROM HELP METHOD/CLASS"
     when "Q"

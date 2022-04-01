@@ -14,18 +14,18 @@ class Leave
     @leave_remaining = leave_remaining
   end
 
-  def self.retreive_staff_name(data_staff, staffid)
-    data_staff.find { |name| name.include?(staffid)}[1]
+  def self.retreive_staff_name(staffid)
+    STAFF_FILE.find { |name| name.include?(staffid)}[1]
   end
 
-  def self.menu(data, data_staff, staffid)
+  def self.menu(data, staffid)
     system 'clear'
     puts "STAFF LEAVE MENU\n "
-    puts "Welcome #{retreive_staff_name(data_staff, staffid)}! \n "
+    puts "Welcome #{retreive_staff_name(staffid)}! \n "
     puts 'Your current requested dates are:'
     puts retrieve_dates_taken(data, staffid)
     puts " "
-    displaying_remaining_leave_credits(data, data_staff, staffid)
+    displaying_remaining_leave_credits(data, staffid)
     puts " \nPlease enter a number or 'H' or 'Q' to select from the following:\n "
     puts '1. Request New Leave'
     puts "2. Delete Existing Untaken Leave \n "
@@ -34,8 +34,8 @@ class Leave
     puts "Q. Exit \n "
   end
 
-  def self.max_allocated_days(data, data_staff, staffid)
-    if (data_staff.find { |values| values.include?(staffid)}[2]) == 'MANAGER_MAX_LEAVE_ALLOCATED'
+  def self.max_allocated_days(data, staffid)
+    if (STAFF_FILE.find { |values| values.include?(staffid)}[2]) == 'MANAGER_MAX_LEAVE_ALLOCATED'
       leave_days_by_role = MANAGER_MAX_LEAVE_ALLOCATED
     else 
       leave_days_by_role = TEAM_MEMBER_MAX_LEAVE_ALLOCATED
@@ -61,15 +61,15 @@ class Leave
     data[0].select { |date, names| names.include? (staffid) }.keys
   end
 
-  def self.displaying_remaining_leave_credits(data, data_staff, staffid)
+  def self.displaying_remaining_leave_credits(data, staffid)
     dates_taken = retrieve_dates_taken(data, staffid)
     number_of_dates_taken = dates_taken.length
-    leave_days_by_role = max_allocated_days(data, data_staff, staffid)
+    leave_days_by_role = max_allocated_days(data, staffid)
     remaining_leave = leave_days_by_role - number_of_dates_taken
     puts "Your remaining leave credits: #{remaining_leave} days\n "
   end
 
-  def self.create_new(data, data_staff, staffid)
+  def self.create_new(data, staffid)
     leave_date = ' '
 
     while leave_date = ' ' || is_date_already_booked(data, leave_date, staffid) || is_max_capacity_reached(data, leave_date)
@@ -82,14 +82,14 @@ class Leave
         puts " \nUnable to book, maximum capacity reached.  Please try another date.\n "
       else
         updating_new_leave_to_dates_file(data, leave_date, staffid)
-        displaying_remaining_leave_credits(data, data_staff, staffid)
+        displaying_remaining_leave_credits(data, staffid)
         break
       end
     end
   end
 
-  def self.delete_leave(data, data_staff, staffid)
-    staff_name = retreive_staff_name(data_staff, staffid)
+  def self.delete_leave(data, staffid)
+    staff_name = retreive_staff_name(staffid)
     puts "Hi #{staff_name}, please enter date to delete:\n(in the format DDMMMYY)"
     date_to_delete = UserInput.entry.upcase
     if data[0][date_to_delete].any? { |name| name.include?(staffid) }
@@ -107,13 +107,13 @@ class Leave
       leave_menu_selection != 'Q'
   end
 
-  def self.leave_make_selection(data, data_staff, staffid)
+  def self.leave_make_selection(data, staffid)
     leave_menu_selection = UserInput.entry.upcase
         case leave_menu_selection
         when "1"
-          create_new(data, data_staff, staffid)
+          create_new(data, staffid)
         when "2"
-          delete_leave(data, data_staff, staffid)
+          delete_leave(data, staffid)
         when "H"
 
         when "Q"
@@ -127,11 +127,10 @@ class Leave
 
   def self.run(staffid)
     data = JSON.load_file('dates.json')
-    data_staff = CSV.read('staff.csv')
     leave_menu_selection = ' '
     while invalid_leave_response(leave_menu_selection)
-      menu(data, data_staff, staffid)
-      leave_make_selection(data, data_staff, staffid)
+      menu(data, staffid)
+      leave_make_selection(data, staffid)
       break
     end
   end

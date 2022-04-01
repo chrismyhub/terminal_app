@@ -11,7 +11,6 @@ class Staff
   end
 
   # WRITE METHOD FOR UPDATE NAME
-  # WRITE A METHOD FOR DELETE NAME
   def self.input_name
     puts 'Please enter your name:'
     UserInput.entry.capitalize
@@ -54,6 +53,12 @@ class Staff
     new_staff_password = input_password
     Staff.new(new_staff_id, new_staff_name, new_staff_role, new_staff_password)
   end
+
+  def self.delete_existing(staffid)
+
+  end
+
+
 
   # CREATE METHOD FOR UPDATING AND DELETING EXISTING STAFF DEATILS FROM CSV
   def self.add_to_staff_csv(newbie)

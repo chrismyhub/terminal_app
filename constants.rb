@@ -1,4 +1,6 @@
 module Constants
   MANAGER_MAX_LEAVE_ALLOCATED = 30
   TEAM_MEMBER_MAX_LEAVE_ALLOCATED = 20
+
+  STAFF_FILE = CSV.read('staff.csv')
 end
