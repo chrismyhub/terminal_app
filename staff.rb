@@ -14,8 +14,8 @@ class Staff
   end
 
   # WRITE METHOD FOR UPDATE NAME
-  def self.input_name
-    puts 'Please enter your name:'
+  def self.input_name(new_name)
+    puts "Please enter your#{new_name}name:"
     UserInput.entry.capitalize
   end
 
@@ -28,14 +28,14 @@ class Staff
     role_entered = ' '
 
     while role_entered != 'M' && role_entered != 'T'
-       puts "Please enter your role: \n (Please enter either M (for MANAGER) or T (for TEAM MEMBER)"
+      puts "Please enter your role: \n (Please enter either M (for MANAGER) or T (for TEAM MEMBER)"
        role_entered = UserInput.entry.upcase
          if role_entered == 'M'
            max_leave_allocated = 'MANAGER_MAX_LEAVE_ALLOCATED'
          elsif role_entered == 'T'
-          max_leave_allocated = 'TEAM_MEMBER_MAX_LEAVE_ALLOCATED'
+           max_leave_allocated = 'TEAM_MEMBER_MAX_LEAVE_ALLOCATED'
          else
-          system "clear"
+           system "clear"
           puts "Invalid entry, please try again."
          end
     end
@@ -50,20 +50,16 @@ class Staff
 
   # CREATE NEW METHOD FOR UPDATE AND DELETE EXISTING STAFF DETAILS 
   def self.create_new
-    new_staff_name = input_name
+    new_staff_name = input_name(' ')
     new_staff_id = create_id(new_staff_name)
     new_staff_role = input_role
     new_staff_password = input_password
     Staff.new(new_staff_id, new_staff_name, new_staff_role, new_staff_password)
   end
 
-  # def self.update_existing
-
-  # end
-
   def self.write_to_csv
     File.open('staff.csv', 'w') do |f|
-    f.write(EDIT_STAFF_FILE.to_csv)
+      f.write(EDIT_STAFF_FILE.to_csv)
     end
   end
 
@@ -76,27 +72,78 @@ class Staff
     puts 'Successfully deleted your account!'
   end
 
-  # def self.delete_existing(staffid)
-  #   data_staff = CSV.table('staff.csv')
+  def self.update_existing
+    input_name(" new ")
 
-  #   data_staff.delete_if do |row|
-  #     row[:staffid] == staffid
-  #   end
-
-  #   File.open('staff.csv', 'w') do |f|
-  #   f.write(data_staff.to_csv)
-  #   end
-  #   puts 'Successfully deleted your account!'
-  # end
+    # FIND EXISTING ROLE
+    staff_role = READ_STAFF_FILE.find { |role| role.include?(staff_id)}[2]
 
 
+    # OPEN STAFF CSV File
+    CSV.open('staff_output.csv', 'a') do |csv|
+    # INSERT NEW NAME AND ADD NEW STAFF DETAILS TO STAFF OUTPUT CSV
+    csv << [staff_id, new_name, staff_role, staff_password]
+    end
+
+    # DELETE OLD STAFF DETAILS
+
+    # CALL STAFF CSV FILE
+    data_staff = CSV.table('staff.csv')
+
+    # DELETE ROW IF STAFF NAME STAFF ID
+    data_staff.delete_if do |row|
+    row[:staffid] == staff_id
+    end
+
+    # WRITE UPDATED STAFF CSV FILE
+    File.open('staff.csv', 'w') do |f|
+    f.write(data_staff.to_csv)
+    end
+
+    # MOVE UPDATED DETAILS TO EXISTING LIST
+
+    # OPEN STAFF OUTPUT CSV File
+    data_staff_new = CSV.read('staff_output.csv')
+    # LOOK FOR EXISTING STAFF ID FROM OUTPUT CSV
+    staff_id_new = data_staff_new.find { |id| id.include?(staff_id)}[0]
+    # LOOK FOR UPDATED NAME FROM OUTPUT CSV
+    staff_name_new = data_staff_new.find { |name| name.include?(staff_id)}[1]
+    # LOOK FOR EXISTING ROLE FROM OUTPUT CSV
+    staff_role_new = data_staff_new.find { |role| role.include?(staff_id)}[2]
+    # LOOK FOR EXISTING PASSWORD FROM OUTPUT CSV
+    staff_password_new = data_staff_new.find { |password| password.include?(staff_id)}[3]
+    
+    #OPEN EXISTING STAFF CSV
+    CSV.open('staff.csv', 'a') do |csv|
+    # COPY UPDATED DETAILS FROM OUTPUT CSV TO EXISTING STAFF CSV
+    csv << [staff_id_new, staff_name_new, staff_role_new, staff_password_new]
+    end
+
+
+    # DELETE OUTPUT CSV CONTENTS
+
+    # CALL STAFF OUTPUT CSV FILE
+    data_staff = CSV.table('staff_output.csv')
+
+    # DELETE ROW IF STAFF NAME STAFF ID IN STAFF OUTPUT CSV
+    data_staff.delete_if do |row|
+    row[:staffid] == staff_id
+    end
+
+    # WRITE UPDATED STAFF OUTPUT CSV FILE
+    File.open('staff_output.csv', 'w') do |f|
+    f.write(data_staff.to_csv)
+    end
+
+    puts "You have successfully changed your Name!"
+
+  end
 
   # CREATE METHOD FOR UPDATING AND DELETING EXISTING STAFF DEATILS FROM CSV
   def self.add_to_staff_csv(newbie)
     CSV.open('staff.csv', 'a') do |csv|
-    csv << [newbie.id, newbie.name, newbie.role, newbie.password]
-    puts "\n Your profile is now setup!\n "
+      csv << [newbie.id, newbie.name, newbie.role, newbie.password]
+      puts "\n Your profile is now setup!\n "
     end
   end
-
 end
