@@ -63,8 +63,8 @@ class Staff
   # CREATE METHOD FOR UPDATING AND DELETING EXISTING STAFF DEATILS FROM CSV
   def self.add_to_staff_csv(newbie)
     CSV.open('staff.csv', 'a') do |csv|
-      csv << [newbie.id, newbie.name, newbie.role, newbie.password]
-      puts "\n Your profile is now setup!\n "
+    csv << [newbie.id, newbie.name, newbie.role, newbie.password]
+    puts "\n Your profile is now setup!\n "
     end
   end
 

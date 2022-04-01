@@ -1,11 +1,12 @@
-require 'csv'
 require_relative 'user_input'
+require_relative 'constants.rb'
 
 class Validation
 
+  include Constants
+
   def self.is_valid_staff(staffid, password)
-    data_staff = CSV.read('staff.csv')
-    (data_staff.find { |staff| staff.include?(staffid)}[3]) == password
+    (READ_STAFF_FILE.find { |staff| staff.include?(staffid)}[3]) == password
   end
 
   def self.login
