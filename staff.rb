@@ -158,6 +158,7 @@ class Staff
       elsif name_or_password == 'P'
         puts "will update password"
       else
+        system 'clear'
         puts "Invalid entry, please try again."
       end
     end
