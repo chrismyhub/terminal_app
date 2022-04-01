@@ -57,18 +57,37 @@ class Staff
     Staff.new(new_staff_id, new_staff_name, new_staff_role, new_staff_password)
   end
 
-  def self.delete_existing(staffid)
-    data_staff = CSV.table('staff.csv')
+  # def self.update_existing
 
-    data_staff.delete_if do |row|
+  # end
+
+  def self.write_to_csv
+    File.open('staff.csv', 'w') do |f|
+    f.write(EDIT_STAFF_FILE.to_csv)
+    end
+  end
+
+  def self.delete_existing(staffid)
+    EDIT_STAFF_FILE.delete_if do |row|
       row[:staffid] == staffid
     end
 
-    File.open('staff.csv', 'w') do |f|
-    f.write(data_staff.to_csv)
-    end
+    write_to_csv
     puts 'Successfully deleted your account!'
   end
+
+  # def self.delete_existing(staffid)
+  #   data_staff = CSV.table('staff.csv')
+
+  #   data_staff.delete_if do |row|
+  #     row[:staffid] == staffid
+  #   end
+
+  #   File.open('staff.csv', 'w') do |f|
+  #   f.write(data_staff.to_csv)
+  #   end
+  #   puts 'Successfully deleted your account!'
+  # end
 
 
 
