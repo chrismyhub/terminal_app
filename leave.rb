@@ -1,6 +1,4 @@
 require_relative 'constants.rb'
-require 'csv'
-require 'json'
 
 class Leave
   attr_reader :staffid, :leave_days_by_role, :leave_taken, :leave_remaining
