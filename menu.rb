@@ -3,6 +3,7 @@ require_relative 'leave'
 require 'terminal-basic-menu'
 require 'rainbow'
 require 'tty-font'
+require_relative 'staff'
 
 class Menu
   def self.exit
