@@ -2,9 +2,9 @@ require_relative 'validation'
 require_relative 'leave'
 require 'terminal-basic-menu'
 require 'rainbow'
+require 'tty-font'
 
 class Menu
-
   def self.exit
     puts " \nYou have logged out of Team Leave App, Goodbye!\n "
   end
@@ -20,7 +20,10 @@ class Menu
     menu1 = Menu.new(header: header, body: body, footer: footer)
     menu1.border_color = :lightyellow
     system('clear')
+    font = TTY::Font.new(:straight)
+    puts font.write("TEAM    LEAVE    APP")
     menu1.display_menu
+    
   end
 
   def self.create_new_profile
