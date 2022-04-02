@@ -1,6 +1,8 @@
 require_relative 'constants'
 require_relative 'staff'
 require_relative 'validation'
+require 'tty-box'
+require 'table_print'
 
 class Leave
   attr_reader :staffid, :leave_days_by_role, :leave_taken, :leave_remaining
@@ -31,21 +33,18 @@ class Leave
     system('clear')
     menu1.display_menu
 
-    puts 'Your current requested dates are:'
-    puts retrieve_dates_taken(staffid)
+    puts "#{Rainbow('Your current requested dates are:').pink.bright}"
+    if retrieve_dates_taken(staffid).empty?
+      print ''
+    else
+      box = TTY::Box.frame "#{retrieve_dates_taken(staffid).join(', ')}", padding: 1, align: :center,
+          style:{ fg: :blue, bg: :green, border:{ fg: :black, bg: :green } }
+      print box
+    end
     puts " "
     displaying_remaining_leave_credits(staffid)
-    # puts " \nPlease enter a number or 'H' or 'Q' to select from the following:\n "
-    # puts '1. Request New Leave'
-    # puts "2. Delete Existing Untaken Leave \n "
-    # puts 'H. Help Menu'
-    # puts 'M. Return to Main Menu'
-    # puts "Q. Exit \n "
-  end
 
-  # def self.find_staff_in_csv(staffid, column_index)
-  #   READ_STAFF_FILE.find { |values| values.include?(staffid)}[column_index]
-  # end
+  end
 
   def self.max_allocated_days(staffid)
     if Staff.find_staff_in_csv(staffid, 2) == 'MANAGER_MAX_LEAVE_ALLOCATED'
@@ -80,9 +79,12 @@ class Leave
     leave_days_by_role = max_allocated_days(staffid)
     remaining_leave = leave_days_by_role - number_of_dates_taken
     if number_of_dates_taken == 0
-      puts '(YOU CURRENTLY HAVE NO REQUESTED LEAVE)'
+      box = TTY::Box.frame "YOU CURRENTLY HAVE NO REQUESTED LEAVE", padding: 1, align: :center,
+        style:{ fg: :bright_yellow, bg: :blue, border:{ fg: :bright_yellow, bg: :blue } }
+      print box
+      puts "Your #{Rainbow('remaining').underline.pink} leave credits: #{remaining_leave} days\n "
     else
-      puts "Your remaining leave credits: #{remaining_leave} days\n "
+      puts "Your #{Rainbow('remaining').underline.pink} leave credits: #{remaining_leave} days\n "
     end
   end
 

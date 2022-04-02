@@ -1,6 +1,7 @@
 require_relative 'validation'
 require_relative 'leave'
 require 'terminal-basic-menu'
+require 'rainbow'
 
 class Menu
 
@@ -9,8 +10,8 @@ class Menu
   end
 
   def self.main_greeting
-    header_text = 'WELCOME TO THE TEAM LEAVE APP!'
-    header = { text: header_text, color: :yellow }
+    header_text = "WELCOME TO THE TEAM LEAVE APP!"
+    header = { text: header_text, color: :ghostwhite }
     body_text = "Please enter a number or 'H' or 'Q' to select from the following:"
     body_choices = ['Login', 'Create new profile', 'Update Existing profile/password', 'Delete Existing profile']
     body = {text: body_text, choices: body_choices, align: 'center', color: :white }
