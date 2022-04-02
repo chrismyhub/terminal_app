@@ -1,5 +1,6 @@
 require_relative 'validation'
 require_relative 'leave'
+require 'terminal-basic-menu'
 
 class Menu
 
@@ -9,14 +10,18 @@ class Menu
 
   def self.main_greeting
     system 'clear'
-    puts " \nWelcome to the Team Leave App! \n "
-    puts "Please enter a number or 'H' or 'Q' to select from the following:"
-    puts '1. Login'
-    puts '2. Create new profile'
-    puts '3. Update Existing profile/password'
-    puts "4. Delete Existing profile \n "
-    puts 'H. Help menu'
-    puts "Q. Exit \n "
+
+    header_text = 'Welcome to the Team Leave App!'
+    header = { text: header_text, color: :yellow }
+    body_text = "Please enter a number or 'H' or 'Q' to select from the following:"
+    body_choices = ['Login', 'Create new profile', 'Update Existing profile/password', 'Delete Existing profile']
+    body = {text: body_text, choices: body_choices, align: 'center', color: :white }
+    footer_text = "H. Help menu\nQ. Exit"
+    footer = { text: footer_text, align: 'rjust', color: :orange }
+    menu1 = Menu.new(header: header, body: body, footer: footer)
+    menu1.border_color = :green
+    system('clear')
+    menu1.display_menu
   end
 
   def self.create_new_profile
