@@ -38,7 +38,7 @@ class Leave
       print ''
     else
       box = TTY::Box.frame "#{retrieve_dates_taken(staffid).join(', ')}", padding: 1, align: :center,
-          style:{ fg: :blue, bg: :green, border:{ fg: :black, bg: :green } }
+          style:{ fg: :white, bg: :green, border:{ fg: :black, bg: :green } }
       print box
     end
     puts " "
@@ -114,7 +114,7 @@ class Leave
       READ_DATES_FILE[0][date_to_delete].delete(staffid)
       File.write('dates.json', JSON.pretty_generate(READ_DATES_FILE))
       system 'clear'
-      puts "You have successfully deleted leave for #{date_to_delete}!\n "
+      puts "\n #{Rainbow("You have successfully deleted leave for #{date_to_delete}!").bg(:darkgreen)}\n "
     end
   end
 

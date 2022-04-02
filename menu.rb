@@ -26,8 +26,8 @@ class Menu
   def self.create_new_profile
     enter_new_staff = Staff.create_new
     Staff.add_to_staff_csv('staff.csv', enter_new_staff)
-    puts "\n Your profile is now setup!\n "
-    Validation.return_to_menu("Main")
+    puts "\n #{Rainbow("Your profile is now setup!").bg(:darkgreen)}\n "
+    Validation.return_to_menu('Main')
     Main.run
   end
 
@@ -40,8 +40,8 @@ class Menu
         if user_input == "Y"
           Staff.delete_existing(staffid)
         elsif user_input == "N"
-          # LINK BACK TO MAIN MENU
-          puts " \nNo deletion - BACK TO MAIN MENU\n "
+          Main.run
+          # puts " \nNo deletion\n "
         else
           system 'clear'
           puts 'Invalid entry, please try again.'
@@ -70,7 +70,7 @@ class Menu
     when 'Q'
       exit
     else 
-      puts 'You have entered an invalid choice'
+      puts 'Invalid entry, please try again.'
     end
   end
 
