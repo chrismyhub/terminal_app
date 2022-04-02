@@ -70,7 +70,11 @@ class Leave
     number_of_dates_taken = dates_taken.length
     leave_days_by_role = max_allocated_days(staffid)
     remaining_leave = leave_days_by_role - number_of_dates_taken
-    puts "Your remaining leave credits: #{remaining_leave} days\n "
+    if number_of_dates_taken == 0
+      puts '(YOU CURRENTLY HAVE NO REQUESTED LEAVE)'
+    else
+      puts "Your remaining leave credits: #{remaining_leave} days\n "
+    end
   end
 
   def self.create_new(staffid)
