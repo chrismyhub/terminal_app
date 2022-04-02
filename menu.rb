@@ -9,17 +9,15 @@ class Menu
   end
 
   def self.main_greeting
-    system 'clear'
-
-    header_text = 'Welcome to the Team Leave App!'
+    header_text = 'WELCOME TO THE TEAM LEAVE APP!'
     header = { text: header_text, color: :yellow }
     body_text = "Please enter a number or 'H' or 'Q' to select from the following:"
     body_choices = ['Login', 'Create new profile', 'Update Existing profile/password', 'Delete Existing profile']
     body = {text: body_text, choices: body_choices, align: 'center', color: :white }
-    footer_text = "H. Help menu\nQ. Exit"
+    footer_text = "H. Help Menu\nQ. Exit"
     footer = { text: footer_text, align: 'rjust', color: :orange }
     menu1 = Menu.new(header: header, body: body, footer: footer)
-    menu1.border_color = :green
+    menu1.border_color = :lightyellow
     system('clear')
     menu1.display_menu
   end

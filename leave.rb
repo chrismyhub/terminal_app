@@ -19,19 +19,28 @@ class Leave
   end
 
   def self.menu(staffid)
-    system 'clear'
-    puts "STAFF LEAVE MENU\n "
-    puts "Welcome #{retreive_staff_name(staffid)}! \n "
+    header_text = "Welcome #{retreive_staff_name(staffid)}!"
+    header = { text: header_text, color: :yellow }
+    body_text = "Please enter a number or 'H' or 'Q' to select from the following:"
+    body_choices = ['Request New Leave', 'Delete Existing Leave']
+    body = {text: body_text, choices: body_choices, align: 'center', color: :white }
+    footer_text = "H. Help Menu\nM. Return to Main Menu\nQ. Exit"
+    footer = { text: footer_text, align: 'rjust', color: :orange }
+    menu1 = Menu.new(header: header, body: body, footer: footer)
+    menu1.border_color = :lightyellow
+    system('clear')
+    menu1.display_menu
+
     puts 'Your current requested dates are:'
     puts retrieve_dates_taken(staffid)
     puts " "
     displaying_remaining_leave_credits(staffid)
-    puts " \nPlease enter a number or 'H' or 'Q' to select from the following:\n "
-    puts '1. Request New Leave'
-    puts "2. Delete Existing Untaken Leave \n "
-    puts 'H. Help Menu'
-    puts 'M. Return to Main Menu'
-    puts "Q. Exit \n "
+    # puts " \nPlease enter a number or 'H' or 'Q' to select from the following:\n "
+    # puts '1. Request New Leave'
+    # puts "2. Delete Existing Untaken Leave \n "
+    # puts 'H. Help Menu'
+    # puts 'M. Return to Main Menu'
+    # puts "Q. Exit \n "
   end
 
   # def self.find_staff_in_csv(staffid, column_index)
