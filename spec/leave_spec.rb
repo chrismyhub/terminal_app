@@ -25,5 +25,4 @@ describe Leave do
     expect(leave.leave_remaining).to eq 18
     expect(leave.leave_taken).to be < 30
   end
-
 end

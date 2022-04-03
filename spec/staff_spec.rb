@@ -27,4 +27,3 @@ describe Staff do
     expect(staff.password).to eq 'abc123'
   end
 end
-

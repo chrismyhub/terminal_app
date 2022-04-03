@@ -61,7 +61,7 @@ I will be using Trello (Trello, 2022) to track it.
 1. Ruby
 2. Ruby Gems:
    - rainbow
-   - table_print
+   - tty-font
    - terminal-basic-menu
    - tty-box
    - RSPEC

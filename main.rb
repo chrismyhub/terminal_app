@@ -24,8 +24,6 @@ class Main
     when '-g'
       CommandLineArg.ruby_gems
     end
-
   end
-  # run
   arg_menu
 end

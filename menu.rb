@@ -24,9 +24,8 @@ class Menu
     menu1.border_color = :lightyellow
     system('clear')
     font = TTY::Font.new(:straight)
-    puts font.write("TEAM    LEAVE    APP")
+    puts font.write('TEAM    LEAVE    APP')
     menu1.display_menu
-    
   end
 
   def self.create_new_profile
@@ -58,7 +57,6 @@ class Menu
     menu_selection == ' ' || menu_selection != '1' && menu_selection != '2' && menu_selection != '3' && menu_selection !='4' && menu_selection != 'H' && menu_selection != 'Q'
   end
 
-
   def self.make_selection(valid_input)
     case valid_input
     when '1'
@@ -71,13 +69,10 @@ class Menu
       Staff.update_existing(staffid)
     when '4'
       delete_profile
-    when 'H'
-      puts 'Go to Help Menu'
     when 'Q'
       exit
     else 
       puts INVALID_INPUT_ERROR_MESSAGE
     end
   end
-
 end

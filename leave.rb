@@ -79,8 +79,8 @@ class Leave
     leave_days_by_role = max_allocated_days(staffid)
     remaining_leave = leave_days_by_role - number_of_dates_taken
     if number_of_dates_taken == 0
-      box = TTY::Box.frame "YOU CURRENTLY HAVE NO REQUESTED LEAVE", padding: 1, align: :center,
-        style:{ fg: :bright_yellow, bg: :blue, border:{ fg: :bright_yellow, bg: :blue } }
+      box = TTY::Box.frame 'YOU CURRENTLY HAVE NO REQUESTED LEAVE', padding: 1, align: :center,
+      style:{ fg: :bright_yellow, bg: :blue, border:{ fg: :bright_yellow, bg: :blue } }
       print box
       puts "Your #{Rainbow('remaining').underline.pink} leave credits: #{remaining_leave} days\n "
     else
@@ -136,8 +136,6 @@ class Leave
       delete_leave(staffid)
       Validation.return_to_menu("Leave")
       run(staffid)
-    when 'H'
-      puts 'Help Menu'
     when 'M'
       Main.run
     when 'Q'
@@ -148,9 +146,8 @@ class Leave
   end
 
   def self.run(staffid)
-      menu(staffid)
-      leave_menu_selection = UserInput.entry_leave
-      leave_make_selection(staffid, leave_menu_selection)
-
+    menu(staffid)
+    leave_menu_selection = UserInput.entry_leave
+    leave_make_selection(staffid, leave_menu_selection)
   end
 end
