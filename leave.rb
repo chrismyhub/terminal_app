@@ -66,7 +66,7 @@ class Leave
   def self.updating_new_leave_to_dates_file(leave_date, staffid)
     READ_DATES_FILE[0][leave_date] << staffid
     File.write('dates.json', JSON.pretty_generate(READ_DATES_FILE))
-    puts "Your leave request for #{leave_date}, is confirmed!"
+    puts "\n #{Rainbow("Your leave request for #{leave_date}, is confirmed!").bg(:darkgreen)}\n "
   end
 
   def self.retrieve_dates_taken(staffid)
