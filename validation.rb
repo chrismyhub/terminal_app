@@ -17,17 +17,17 @@ class Validation
   end
 
   def self.login
-  is_invalid_staff = true
-  while is_invalid_staff
-    puts 'Please enter your Staff ID:'
-    staffid = UserInput.entry
-    puts "Please enter your Password:"
-    password = UserInput.entry
-    is_invalid_staff = !is_valid_staff(staffid, password)
-    feedback = is_invalid_staff ? 'Incorrect login details, please try again.' : 'Successful login!'
-    system 'clear'
-    puts feedback
-  end
-  staffid
+    is_invalid_staff = true
+    while is_invalid_staff
+      puts 'Please enter your Staff ID:'
+      staffid = UserInput.entry
+      puts 'Please enter your Password:'
+      password = UserInput.entry
+      is_invalid_staff = !is_valid_staff(staffid, password)
+      feedback = is_invalid_staff ? "\n #{Rainbow('Incorrect login details, please try again.').bg(:darkred)}\n " : "\n #{Rainbow('Successful login!').bg(:darkgreen)}\n "
+      system 'clear'
+      puts feedback
+    end
+    staffid
   end
 end

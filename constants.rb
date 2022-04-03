@@ -1,5 +1,6 @@
 require 'csv'
 require 'json'
+require 'rainbow'
 
 module Constants
   MANAGER_MAX_LEAVE_ALLOCATED = 30
@@ -9,8 +10,6 @@ module Constants
   EDIT_STAFF_FILE = CSV.table('staff.csv')
   READ_DATES_FILE = JSON.load_file('dates.json')
 
-  MUST_NOT_BE_EMPTY_ERROR_MESSAGE = 'Must not be empty, please try again.'
-  INVALID_INPUT_ERROR_MESSAGE = 'Invalid selection, please try again'
-  INVALID_STAFFID_ERROR_MESSAGE = 'Incorrect Staff ID, please try again.'
-  INVALID_PASSWORD_ERROR_MESSAGE = 'Incorrect Password, please try again.'
+  MUST_NOT_BE_EMPTY_ERROR_MESSAGE = "\n #{Rainbow('Must not be empty, please try again.').bg(:darkred)}\n "
+  INVALID_INPUT_ERROR_MESSAGE = "\n #{Rainbow('Invalid entry, please try again').bg(:darkred)}\n "
 end

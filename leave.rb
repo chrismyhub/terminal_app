@@ -143,7 +143,7 @@ class Leave
     when 'Q'
       Menu.exit
     else 
-      puts 'Invalid selection, please try again'
+      puts INVALID_INPUT_ERROR_MESSAGE
     end
   end
 

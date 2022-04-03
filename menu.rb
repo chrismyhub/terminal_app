@@ -4,8 +4,10 @@ require 'terminal-basic-menu'
 require 'rainbow'
 require 'tty-font'
 require_relative 'staff'
+require_relative 'constants'
 
 class Menu
+  include Constants
   def self.exit
     puts " \nYou have logged out of Team Leave App, Goodbye!\n "
   end
@@ -47,7 +49,7 @@ class Menu
           system('ruby main.rb')
         else
           system 'clear'
-          puts 'Invalid entry, please try again.'
+          puts INVALID_INPUT_ERROR_MESSAGE
         end
     end
   end
@@ -74,7 +76,7 @@ class Menu
     when 'Q'
       exit
     else 
-      puts 'Invalid selection, please try again'
+      puts INVALID_INPUT_ERROR_MESSAGE
     end
   end
 

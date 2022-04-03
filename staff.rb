@@ -41,7 +41,7 @@ class Staff
            max_leave_allocated = 'TEAM_MEMBER_MAX_LEAVE_ALLOCATED'
          else
            system "clear"
-          puts "Invalid entry, please try again."
+          puts INVALID_INPUT_ERROR_MESSAGE
          end
     end
     return max_leave_allocated
@@ -151,8 +151,8 @@ class Staff
       f.write(data_staff.to_csv)
       end
 
-    puts 'You have successfully changed your Password!'
-    Validation.return_to_menu("Main")
+    puts "\n #{Rainbow('You have successfully changed your Password!').bg(:darkgreen)}\n "
+    Validation.return_to_menu('Main')
     system('ruby main.rb')
   end
 
@@ -168,7 +168,7 @@ class Staff
         update_password(staffid)
       else
         system 'clear'
-        puts "Invalid entry, please try again."
+        puts INVALID_INPUT_ERROR_MESSAGE
       end
     end
   end
