@@ -4,6 +4,7 @@ require_relative 'validation'
 require 'tty-box'
 require 'table_print'
 
+# MANAGING ALL LEAVE FEATURES
 class Leave
   attr_reader :staffid, :leave_days_by_role, :leave_taken, :leave_remaining
 
@@ -26,7 +27,7 @@ class Leave
     body_text = "Please enter a number or 'H' or 'Q' to select from the following:"
     body_choices = ['Request New Leave', 'Delete Existing Leave']
     body = {text: body_text, choices: body_choices, align: 'center', color: :white }
-    footer_text = "H. Help Menu\nM. Return to Main Menu\nQ. Exit"
+    footer_text = "M. Return to Main Menu\nQ. Exit"
     footer = { text: footer_text, align: 'rjust', color: :orange }
     menu1 = Menu.new(header: header, body: body, footer: footer)
     menu1.border_color = :lightyellow
@@ -41,9 +42,8 @@ class Leave
           style:{ fg: :white, bg: :green, border:{ fg: :black, bg: :green } }
       print box
     end
-    puts " "
+    puts ' '
     displaying_remaining_leave_credits(staffid)
-
   end
 
   def self.max_allocated_days(staffid)
@@ -55,12 +55,12 @@ class Leave
     leave_days_by_role
   end
 
-  def self.is_date_already_booked(leave_date, staffid)
+  def self.date_already_booked(leave_date, staffid)
     READ_DATES_FILE[0][leave_date].any? { |s| s.include?(staffid) }
   end
 
-  def self.is_max_capacity_reached(leave_date)
-    (READ_DATES_FILE[0][leave_date].length >= 2) 
+  def self.max_capacity_reached(leave_date)
+    (READ_DATES_FILE[0][leave_date].length >= 2)
   end
 
   def self.updating_new_leave_to_dates_file(leave_date, staffid)
@@ -91,13 +91,13 @@ class Leave
   def self.create_new(staffid)
     leave_date = ' '
 
-    while leave_date == ' ' || is_date_already_booked(leave_date, staffid) || is_max_capacity_reached(leave_date)
+    while leave_date == ' ' || date_already_booked(leave_date, staffid) || max_capacity_reached(leave_date)
       puts "\n Please enter leave date required:\n(in the format DDMMMYY)"
       leave_date = UserInput.entry.upcase
       system 'clear'
-      if is_date_already_booked(leave_date, staffid)
+      if date_already_booked(leave_date, staffid)
         puts " \nYou have already booked this date, please try another date.\n "
-      elsif is_max_capacity_reached(leave_date)
+      elsif max_capacity_reached(leave_date)
         puts " \nUnable to book, maximum capacity reached.  Please try another date.\n "
       else
         updating_new_leave_to_dates_file(leave_date, staffid)

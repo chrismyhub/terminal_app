@@ -6,6 +6,7 @@ require 'tty-font'
 require_relative 'staff'
 require_relative 'constants'
 
+# MAIN MENU
 class Menu
   include Constants
   def self.exit
@@ -18,7 +19,7 @@ class Menu
     body_text = "Please enter a number or 'H' or 'Q' to select from the following:"
     body_choices = ['Login', 'Create new profile', 'Update Existing profile/password', 'Delete Existing profile']
     body = {text: body_text, choices: body_choices, align: 'center', color: :white }
-    footer_text = "H. Help Menu\nQ. Exit"
+    footer_text = "Q. Exit"
     footer = { text: footer_text, align: 'rjust', color: :orange }
     menu1 = Menu.new(header: header, body: body, footer: footer)
     menu1.border_color = :lightyellow

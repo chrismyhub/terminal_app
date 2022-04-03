@@ -1,9 +1,10 @@
 require 'rainbow'
 
+# CLI ARGUMENTS
 module CommandLineArg
   def self.help
     system 'clear'
-    puts Rainbow("Welcome to the Teams Leave App, where you can book and delete your leave").underline.yellow.bright
+    puts Rainbow('Welcome to the Teams Leave App, where you can book and delete your leave').underline.yellow.bright
     puts " \n- Please type #{Rainbow('./run_teams_leave_app.sh').aqua.bright} to start booking leave."
     puts "- For more information on the what you can access in this app, please type #{Rainbow('ruby main.rb -i').aqua.bright}"
     puts "- For more information on the Ruby Gems used in this app, please type #{Rainbow('ruby main.rb -g').aqua.bright}\n "
@@ -11,7 +12,7 @@ module CommandLineArg
 
   def self.info
     system 'clear'
-    puts Rainbow("Welcome to the Teams Leave App Information!").underline.yellow.bright
+    puts Rainbow('Welcome to the Teams Leave App Information!').underline.yellow.bright
     puts " \n- You need your Staff ID and Password handy for logging in."
     puts '- You will need to login for managing(view/update/delete) Leave, Name and Password'
     puts " \nYour #{Rainbow('Staff ID').aqua.bright} is your name, without any space, plus the number 1"

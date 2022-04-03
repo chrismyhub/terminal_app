@@ -1,5 +1,6 @@
 require_relative 'constants'
 
+# USER INPUT CLASS FOR ALL FEATURES
 class UserInput
   include Constants
   def self.entry
@@ -43,5 +44,4 @@ class UserInput
   def self.enterkey_entry
     gets.chomp
   end
-
 end

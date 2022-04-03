@@ -1,6 +1,7 @@
 require_relative 'user_input'
 require_relative 'constants'
 
+# STORE ALL VALIDATION FUNCTIONS FOR THE APP
 class Validation
   include Constants
   def self.return_to_menu(which_menu)
@@ -12,7 +13,7 @@ class Validation
     READ_STAFF_FILE.find { |staff| staff.include?(staffid)}[3]
   end
 
-  def self.is_valid_staff(staffid, password)
+  def self.valid_staff(staffid, password)
     find_password_from_csv(staffid) == password
   end
 
@@ -23,7 +24,7 @@ class Validation
       staffid = UserInput.entry
       puts 'Please enter your Password:'
       password = UserInput.entry
-      is_invalid_staff = !is_valid_staff(staffid, password)
+      is_invalid_staff = !valid_staff(staffid, password)
       feedback = is_invalid_staff ? "\n #{Rainbow('Incorrect login details, please try again.').bg(:darkred)}\n " : "\n #{Rainbow('Successful login!').bg(:darkgreen)}\n "
       system 'clear'
       puts feedback

@@ -5,6 +5,7 @@ require_relative 'leave'
 require_relative 'validation'
 require_relative 'command_line_arg'
 
+# MANAGING NAVIGATION FOR ARGV AND MAIN MENU
 class Main
   include CommandLineArg
 

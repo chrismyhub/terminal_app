@@ -25,8 +25,7 @@ This Terminal Application will have the following features:
    - This feature...(INCOMPLETE) 
 4. Manage staff login (password validation)
    - This feature...(INCOMPLETE) 
-5. Help Menu
-   - This feature...(INCOMPLETE) 
+
 
 
 ---

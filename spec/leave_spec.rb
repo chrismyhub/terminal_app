@@ -15,7 +15,7 @@ describe Leave do
   it 'return leave_days_by_role' do
     expect(leave.leave_days_by_role).not_to be_nil
     expect(leave.leave_days_by_role).to eq 'TEAM_MEMBER_MAX_LEAVE_ALLOCATED'
-    expect("LEAVE_ALLOCATED").to include("VE_ALL")
+    expect('LEAVE_ALLOCATED').to include('VE_ALL')
   end
   it 'return leave taken' do
     expect(leave.leave_taken).to eq 2

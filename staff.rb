@@ -2,6 +2,7 @@ require 'csv'
 require_relative 'constants'
 require_relative 'validation'
 
+# ALL STAFF FEATURES FOR APP
 class Staff
   attr_reader :id, :name, :role, :password
 
@@ -18,13 +19,11 @@ class Staff
     READ_STAFF_FILE.find { |values| values.include?(staffid)}[column_index]
   end
 
-
   def self.input_name(new_name)
     puts "Please enter your#{new_name}name:"
     UserInput.entry.capitalize
   end
 
-  
   def self.create_id(new_staff_name)
     "#{new_staff_name.gsub(/[[:space:]]/, '')}1"
   end
@@ -34,26 +33,24 @@ class Staff
 
     while role_entered != 'M' && role_entered != 'T'
       puts "Please enter your role: \n (Please enter either M (for MANAGER) or T (for TEAM MEMBER)"
-       role_entered = UserInput.entry.upcase
-         if role_entered == 'M'
-           max_leave_allocated = 'MANAGER_MAX_LEAVE_ALLOCATED'
-         elsif role_entered == 'T'
-           max_leave_allocated = 'TEAM_MEMBER_MAX_LEAVE_ALLOCATED'
-         else
-           system "clear"
+      role_entered = UserInput.entry.upcase
+        if role_entered == 'M'
+          max_leave_allocated = 'MANAGER_MAX_LEAVE_ALLOCATED'
+        elsif role_entered == 'T'
+          max_leave_allocated = 'TEAM_MEMBER_MAX_LEAVE_ALLOCATED'
+        else
+          system "clear"
           puts INVALID_INPUT_ERROR_MESSAGE
-         end
+        end
     end
-    return max_leave_allocated
+    max_leave_allocated
   end
-
 
   def self.input_password(new_password)
     puts "Please enter #{new_password} password\n(must be 6 characters):"
     UserInput.entry
   end
 
- 
   def self.create_new
     new_staff_name = input_name(' ')
     new_staff_id = create_id(new_staff_name)
@@ -75,47 +72,45 @@ class Staff
 
     write_to_csv
     puts "\n #{Rainbow('Successfully deleted your account!').bg(:darkgreen)}\n "
-    Validation.return_to_menu("Main")
+    Validation.return_to_menu('Main')
     system('ruby main.rb')
   end
 
   def self.update_name(staffid)
-    new_name = input_name(" new ")
+    new_name = input_name(' new ')
 
     staff_role = find_staff_in_csv(staffid, 2)
     staff_password = Validation.find_password_from_csv(staffid)
 
     CSV.open('staff_output.csv', 'a') do |csv|
-    csv << [staffid, new_name, staff_role, staff_password]
+      csv << [staffid, new_name, staff_role, staff_password]
     end
 
     EDIT_STAFF_FILE.delete_if do |row|
-    row[:staffid] == staffid
+      row[:staffid] == staffid
     end
 
     File.open('staff.csv', 'w') do |f|
-    f.write(EDIT_STAFF_FILE.to_csv)
+      f.write(EDIT_STAFF_FILE.to_csv)
     end
 
     CSV.open('staff.csv', 'a') do |csv|
-
-    csv << [staffid, new_name, staff_role, staff_password]
+      csv << [staffid, new_name, staff_role, staff_password]
     end
 
     data_staff = CSV.table('staff_output.csv')
 
     data_staff.delete_if do |row|
-    row[:staffid] == staffid
+      row[:staffid] == staffid
     end
 
     File.open('staff_output.csv', 'w') do |f|
-    f.write(data_staff.to_csv)
+      f.write(data_staff.to_csv)
     end
 
     puts "\n #{Rainbow('You have successfully changed your Name!').bg(:darkgreen)}\n "
     Validation.return_to_menu('Main')
     system('ruby main.rb')
-
   end
 
   def self.update_password(staffid)
@@ -126,30 +121,29 @@ class Staff
 
     CSV.open('staff_output.csv', 'a') do |csv|
       csv << [staffid, staff_name, staff_role, new_password]
-      end
+    end
 
-      EDIT_STAFF_FILE.delete_if do |row|
+    EDIT_STAFF_FILE.delete_if do |row|
       row[:staffid] == staffid
-      end
+    end
 
-      File.open('staff.csv', 'w') do |f|
+    File.open('staff.csv', 'w') do |f|
       f.write(EDIT_STAFF_FILE.to_csv)
-      end
+    end
 
-      CSV.open('staff.csv', 'a') do |csv|
-   
+    CSV.open('staff.csv', 'a') do |csv|
       csv << [staffid, staff_name, staff_role, new_password]
-      end
+    end
 
-      data_staff = CSV.table('staff_output.csv')
+    data_staff = CSV.table('staff_output.csv')
 
-      data_staff.delete_if do |row|
+    data_staff.delete_if do |row|
       row[:staffid] == staffid
-      end
+    end
 
-      File.open('staff_output.csv', 'w') do |f|
+    File.open('staff_output.csv', 'w') do |f|
       f.write(data_staff.to_csv)
-      end
+    end
 
     puts "\n #{Rainbow('You have successfully changed your Password!').bg(:darkgreen)}\n "
     Validation.return_to_menu('Main')
