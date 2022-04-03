@@ -11,20 +11,20 @@ module CommandLineArg
 
   def self.info
     system 'clear'
-    puts Rainbow("Welcome to the Teams Leave App Information!\n ").underline.yellow.bright
-    puts 'You need your Staff ID and Password handy for logging in.'
-    puts 'You will need to login for managing(view/update/delete) Leave, Name and Password'
+    puts Rainbow("Welcome to the Teams Leave App Information!").underline.yellow.bright
+    puts " \n- You need your Staff ID and Password handy for logging in."
+    puts '- You will need to login for managing(view/update/delete) Leave, Name and Password'
     puts " \nYour #{Rainbow('Staff ID').aqua.bright} is your name, without any space, plus the number 1"
     puts "(e.g. John Smith = #{Rainbow('Johnsmith1').aqua.bright})"
-    puts "\nYou can view what dates you have already requested."
-    puts 'You can view your remaining leave credits (depending on your role).'
+    puts "\n- You can view what dates you have already requested."
+    puts '- You can view your remaining leave credits (depending on your role).'
     puts " \n#{Rainbow('When you submit a leave request, the app will automatically check:').underline}"
     puts '     1. If you have already booked a particular date'
     puts '     2. If you are unable to request leave due to work requirements'
-    puts " \nYou can delete a leave that you previously requested."
-    puts 'You can delete your profile after safely logging in'
-    puts " \nYou can create a new profile (if you are a new staff member)."
-    puts "You can update your Name or Password after safely logging in.\n "
+    puts " \n- You can delete a leave that you previously requested."
+    puts '- You can delete your profile after safely logging in'
+    puts " \n- You can create a new profile (if you are a new staff member)."
+    puts "- You can update your Name or Password after safely logging in.\n "
   end
 
   def self.ruby_gems
