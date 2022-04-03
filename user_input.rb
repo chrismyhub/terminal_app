@@ -16,7 +16,7 @@ class UserInput
 
   def self.entry_main
     begin
-      input = gets.chomp
+      input = gets.chomp.upcase
       raise(StandardError, MUST_NOT_BE_EMPTY_ERROR_MESSAGE) if input.empty?
       raise(StandardError, MUST_NOT_BE_EMPTY_ERROR_MESSAGE) if input.strip == ''
       raise(StandardError, INVALID_INPUT_ERROR_MESSAGE) if Menu.invalid_response(input)
@@ -29,7 +29,7 @@ class UserInput
 
   def self.entry_leave
     begin
-      input = gets.chomp
+      input = gets.chomp.upcase
       raise(StandardError, MUST_NOT_BE_EMPTY_ERROR_MESSAGE) if input.empty?
       raise(StandardError, MUST_NOT_BE_EMPTY_ERROR_MESSAGE) if input.strip == ''
       raise(StandardError, INVALID_INPUT_ERROR_MESSAGE) if Leave.invalid_leave_response(input)

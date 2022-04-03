@@ -6,13 +6,9 @@ require_relative 'validation'
 
 class Main
   def self.run
-    # menu_selection = ' '
-    # while Menu.invalid_response(menu_selection)
       Menu.main_greeting
-      input = UserInput.entry_main
-      menu_selection = input.upcase
+      menu_selection = UserInput.entry_main
       Menu.make_selection(menu_selection)
-    # end
   end
 
   Main.run

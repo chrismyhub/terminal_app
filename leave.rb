@@ -147,15 +147,12 @@ class Leave
     end
   end
 
- 
-
   def self.run(staffid)
-    leave_menu_selection = ' '
-    while invalid_leave_response(leave_menu_selection)
+    # leave_menu_selection = ' '
+    # while invalid_leave_response(leave_menu_selection)
       menu(staffid)
-      input = UserInput.entry_leave
-      leave_menu_selection = input.upcase
+      leave_menu_selection = UserInput.entry_leave
       leave_make_selection(staffid, leave_menu_selection)
-    end
+    # end
   end
 end
