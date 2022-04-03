@@ -78,6 +78,9 @@ I will be using Trello (Trello, 2022) to track it.
 - User can access the help menu by entering (INSERT COMMAND LINE TO ACCESS HELP HERE)
 - Here is what the help menu will show:
   - (INSERT HELP MENU HERE)
+
+- To run The Teams Leave Application in Terminal, type ```./run_teams_leave_app.sh```  .
+-  
   
 
  ---
