@@ -8,7 +8,11 @@ class UserInput
       puts e.message
       retry
     end
-    return input
+    input
+  end
+
+  def self.anykey_entry
+    gets.chomp
   end
 
 end

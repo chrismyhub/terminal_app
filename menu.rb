@@ -32,7 +32,7 @@ class Menu
     Staff.add_to_staff_csv('staff.csv', enter_new_staff)
     puts "\n #{Rainbow("Your profile is now setup!").bg(:darkgreen)}\n "
     Validation.return_to_menu('Main')
-    Main.run
+    system('ruby main.rb')
   end
 
   def self.delete_profile
@@ -44,8 +44,7 @@ class Menu
         if user_input == "Y"
           Staff.delete_existing(staffid)
         elsif user_input == "N"
-          Main.run
-          # puts " \nNo deletion\n "
+          system('ruby main.rb')
         else
           system 'clear'
           puts 'Invalid entry, please try again.'
@@ -57,8 +56,8 @@ class Menu
     menu_selection == ' ' || menu_selection != '1' && menu_selection != '2' && menu_selection != '3' && menu_selection !='4' && menu_selection != 'H' && menu_selection != 'Q'
   end
 
-  def self.make_selection(menu_selection)
-    case menu_selection
+  def self.make_selection(valid_input)
+    case valid_input
     when '1'
       staffid = Validation.login
       Leave.run(staffid)

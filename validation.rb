@@ -6,8 +6,8 @@ class Validation
   include Constants
 
   def self.return_to_menu(which_menu)
-    puts "Press any key to return to #{which_menu} Menu..."
-    UserInput.entry
+    puts "Press Enter to return to #{which_menu} Menu..."
+    UserInput.anykey_entry
   end
 
   def self.find_password_from_csv(staffid)

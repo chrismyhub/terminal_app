@@ -126,8 +126,7 @@ class Leave
       leave_menu_selection != 'Q'
   end
 
-  def self.leave_make_selection(staffid)
-    leave_menu_selection = UserInput.entry.upcase
+  def self.leave_make_selection(staffid, leave_menu_selection)
     case leave_menu_selection
     when '1'
       create_new(staffid)
@@ -154,8 +153,8 @@ class Leave
     leave_menu_selection = ' '
     while invalid_leave_response(leave_menu_selection)
       menu(staffid)
-      leave_make_selection(staffid)
-      break
+      leave_menu_selection = UserInput.entry.upcase
+      leave_make_selection(staffid, leave_menu_selection)
     end
   end
 end

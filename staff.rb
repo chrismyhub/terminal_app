@@ -76,7 +76,7 @@ class Staff
     write_to_csv
     puts "\n #{Rainbow('Successfully deleted your account!').bg(:darkgreen)}\n "
     Validation.return_to_menu("Main")
-    Main.run
+    system('ruby main.rb')
   end
 
   def self.update_name(staffid)
@@ -114,7 +114,7 @@ class Staff
 
     puts "\n #{Rainbow('You have successfully changed your Name!').bg(:darkgreen)}\n "
     Validation.return_to_menu('Main')
-    Main.run
+    system('ruby main.rb')
 
   end
 
@@ -153,7 +153,7 @@ class Staff
 
     puts 'You have successfully changed your Password!'
     Validation.return_to_menu("Main")
-    Main.run
+    system('ruby main.rb')
   end
 
   def self.update_existing(staffid)
