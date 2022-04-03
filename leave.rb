@@ -143,7 +143,7 @@ class Leave
     when 'Q'
       Menu.exit
     else 
-      puts 'You have entered an invalid choice'
+      puts 'Invalid selection, please try again'
     end
   end
 
@@ -153,7 +153,8 @@ class Leave
     leave_menu_selection = ' '
     while invalid_leave_response(leave_menu_selection)
       menu(staffid)
-      leave_menu_selection = UserInput.entry.upcase
+      input = UserInput.entry_leave
+      leave_menu_selection = input.upcase
       leave_make_selection(staffid, leave_menu_selection)
     end
   end

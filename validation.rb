@@ -2,12 +2,10 @@ require_relative 'user_input'
 require_relative 'constants'
 
 class Validation
-
   include Constants
-
   def self.return_to_menu(which_menu)
     puts "Press Enter to return to #{which_menu} Menu..."
-    UserInput.anykey_entry
+    UserInput.enterkey_entry
   end
 
   def self.find_password_from_csv(staffid)

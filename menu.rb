@@ -56,6 +56,7 @@ class Menu
     menu_selection == ' ' || menu_selection != '1' && menu_selection != '2' && menu_selection != '3' && menu_selection !='4' && menu_selection != 'H' && menu_selection != 'Q'
   end
 
+
   def self.make_selection(valid_input)
     case valid_input
     when '1'
@@ -73,7 +74,7 @@ class Menu
     when 'Q'
       exit
     else 
-      puts 'Invalid entry, please try again.'
+      puts 'Invalid selection, please try again'
     end
   end
 

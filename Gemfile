@@ -6,7 +6,6 @@ source "https://rubygems.org"
 
 gem "rainbow", "~> 3.1"
 
-
 gem "terminal-basic-menu", "~> 1.1"
 
 gem "tty-box", "~> 0.7.0"
