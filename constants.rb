@@ -11,4 +11,6 @@ module Constants
 
   MUST_NOT_BE_EMPTY_ERROR_MESSAGE = 'Must not be empty, please try again.'
   INVALID_INPUT_ERROR_MESSAGE = 'Invalid selection, please try again'
+  INVALID_STAFFID_ERROR_MESSAGE = 'Incorrect Staff ID, please try again.'
+  INVALID_PASSWORD_ERROR_MESSAGE = 'Incorrect Password, please try again.'
 end

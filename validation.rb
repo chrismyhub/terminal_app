@@ -21,7 +21,7 @@ class Validation
   while is_invalid_staff
     puts 'Please enter your Staff ID:'
     staffid = UserInput.entry
-    puts 'Please enter your Password:'
+    puts "Please enter your Password:"
     password = UserInput.entry
     is_invalid_staff = !is_valid_staff(staffid, password)
     feedback = is_invalid_staff ? 'Incorrect login details, please try again.' : 'Successful login!'

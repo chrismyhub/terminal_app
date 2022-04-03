@@ -49,7 +49,7 @@ class Staff
 
 
   def self.input_password(new_password)
-    puts "Please enter #{new_password} password:"
+    puts "Please enter #{new_password} password\n(must be 6 characters):"
     UserInput.entry
   end
 
