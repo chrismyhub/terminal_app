@@ -73,7 +73,7 @@ This Terminal Application will have the following features:
 
 ---
 ## Implementation Plan	
-My implementation plan consists of writing out user stories, drawing out a class diagram using Draw.io (draw.io – Diagrams for Confluence and Jira, 2022) and utilising Trello for Agile project management.  In Trello I have made cards for each feature and broken these down into smaller tasks to complete.  Once a task is complete they move across the Trello board.  From 'to do', 'in progress', 'testing', 'completed' and then 'deployed'.  Trello helps me visualise my progress daily.  I've also been using GitHub for regular commits from Visual Studio Code (VSC).  
+My implementation plan consists of writing out user stories, drawing out a class diagram using Draw.io (draw.io – Diagrams for Confluence and Jira, 2022) and utilising Trello (Trello, 2022) for Agile project management.  In Trello I have made cards for each feature and broken these down into smaller tasks to complete.  Once a task is complete they move across the Trello board.  From 'to do', 'in progress', 'testing', 'completed' and then 'deployed'.  Trello helps me visualise my progress daily.  I've also been using GitHub for regular commits from Visual Studio Code (VSC).  
 
 Main design points for the app:
 - Everything feeds into Menu (navigation), then feeds into Main.
@@ -82,10 +82,8 @@ Main design points for the app:
 - Constants and Validation classes separated from main source code, to allow values to be added/updated from one point of entry.
 - User input is in a seperate class to keep the code DRY.
 
+### My Class diagram for the app:
 <img src="./docs/class_diagram.png" alt="class_diagram" title="">
-
-
-I will be using Trello (Trello, 2022) to track it.
 
 ### Screenshots of progress
 
