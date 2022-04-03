@@ -75,12 +75,10 @@ I will be using Trello (Trello, 2022) to track it.
 - (INCOMEPLETE)~OTHER REQUIREMENTS
 
 ### Command line arguments
-- User can access the help menu by entering (INSERT COMMAND LINE TO ACCESS HELP HERE)
-- Here is what the help menu will show:
-  - (INSERT HELP MENU HERE)
-
-- To run The Teams Leave Application in Terminal, type ```./run_teams_leave_app.sh```  .
--  
+- To run The Teams Leave Application in Terminal, type ```./run_teams_leave_app.sh```  
+- To access help in command line, type ```ruby main.rb -h```
+- To access information on the app in command line, type ```ruby main.rb -i```
+- To access information on Ruby Gems in command line, type ```ruby main.rb -g```
   
 
  ---
